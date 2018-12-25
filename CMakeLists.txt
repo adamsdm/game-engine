@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 # Project definitions
-project(game-eng    VERSION 0.0.0)
+project(game_engine    VERSION 0.0.0)
 
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(EXT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
@@ -29,11 +29,31 @@ add_subdirectory(${GLM_DIR})
 include_directories(${GLM_DIR})
 
 ### EXECUTABLE
+include_directories(src/core/)
+add_library(game_engine_core    src/core/app_window.cpp
+                                src/core/app_window.h
+                                src/core/scene.cpp
+                                src/core/scene.h
+                                src/core/renderer.cpp
+                                src/core/renderer.h
+                                src/core/camera.cpp
+                                src/core/camera.h
+                                src/core/geometry.cpp
+                                src/core/geometry.h
+                                src/core/material.cpp
+                                src/core/material.h
+                                src/core/mesh.cpp
+                                src/core/mesh.h)
 
-add_executable(${PROJECT_NAME}  src/main.cpp
-                                src/core/window.cpp)
+target_link_libraries(game_engine_core  glfw 
+                                        glad 
+                                        glm_static)
 
-target_link_libraries(${PROJECT_NAME}   glfw 
+
+add_executable(${PROJECT_NAME}  src/main.cpp)
+
+target_link_libraries(${PROJECT_NAME}   game_engine_core
+                                        glfw 
                                         glad 
                                         glm_static)
 
