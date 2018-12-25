@@ -29,7 +29,10 @@ add_subdirectory(${GLM_DIR})
 include_directories(${GLM_DIR})
 
 ### EXECUTABLE
-add_executable(${PROJECT_NAME} src/main.cpp)
+
+add_executable(${PROJECT_NAME}  src/main.cpp
+                                src/core/window.cpp)
+
 target_link_libraries(${PROJECT_NAME}   glfw 
                                         glad 
                                         glm_static)
