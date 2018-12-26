@@ -1,8 +1,14 @@
 
-cmake_minimum_required(VERSION 3.0.0)
-
 # Project definitions
-project(game_engine    VERSION 0.0.0)
+cmake_minimum_required(VERSION 3.0.0)
+project(game_engine_test    VERSION 0.0.0)
+
+
+if(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    message(FATAL_ERROR "ERROR::In source build prohibited, please specify different build directory")
+endif(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+
+
 
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(EXT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
@@ -13,12 +19,10 @@ set(GLAD_DIR    ${EXT_DIR}/glad)
 
 
 ### EXTERNALS
-
 # glfw
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-
 add_subdirectory(${GLFW_DIR})
 
 # glad
@@ -28,31 +32,46 @@ add_subdirectory(${GLAD_DIR})
 add_subdirectory(${GLM_DIR})
 include_directories(${GLM_DIR})
 
-### EXECUTABLE
-include_directories(src/core/)
-add_library(game_engine_core    src/core/app_window.cpp
-                                src/core/app_window.h
-                                src/core/scene.cpp
-                                src/core/scene.h
-                                src/core/renderer.cpp
-                                src/core/renderer.h
-                                src/core/camera.cpp
-                                src/core/camera.h
-                                src/core/geometry.cpp
-                                src/core/geometry.h
-                                src/core/material.cpp
-                                src/core/material.h
-                                src/core/mesh.cpp
-                                src/core/mesh.h)
-
-target_link_libraries(game_engine_core  glfw 
-                                        glad 
-                                        glm_static)
+### GAME ENGINE LIBRARY
 
 
-add_executable(${PROJECT_NAME}  src/main.cpp)
+set(GE_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+include_directories(${GE_SRC_DIR})
 
-target_link_libraries(${PROJECT_NAME}   game_engine_core
+# Base sources
+set(GE_CORE_BASE_SOURCES    ${GE_SRC_DIR}/base/app_window.cpp
+                            ${GE_SRC_DIR}/base/mesh.cpp
+                            ${GE_SRC_DIR}/base/renderer.cpp
+                            ${GE_SRC_DIR}/base/scene.cpp)
+# Camera sources
+set(GE_CORE_CAMERA_SOURCES      ${GE_SRC_DIR}/camera/camera.cpp)
+
+# Geometry sources
+set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/geometry.cpp)
+
+# Material sources
+set(GE_CORE_MATERIAL_SOURCES    ${GE_SRC_DIR}/material/material.cpp)
+
+# Add sources to library 'game_engine'
+add_library(game_engine     ${GE_CORE_BASE_SOURCES}
+                            ${GE_CORE_CAMERA_SOURCES}
+                            ${GE_CORE_GEOMETRY_SOURCES}
+                            ${GE_CORE_MATERIAL_SOURCES})
+
+# Add include directory to library 'game_engine'
+target_include_directories(game_engine PUBLIC include/)
+# Link libraries to library 'game_engine'
+target_link_libraries(game_engine   glfw 
+                                    glad 
+                                    glm_static)
+
+
+### TEST EXECUTABLE
+# This executable is intended to be used to test the framework
+# Functionality is implemented in 'src/main.cpp'
+add_executable(${PROJECT_NAME}  main.cpp)
+target_include_directories(${PROJECT_NAME} PUBLIC include/)
+target_link_libraries(${PROJECT_NAME}   game_engine
                                         glfw 
                                         glad 
                                         glm_static)

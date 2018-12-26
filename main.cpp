@@ -4,7 +4,7 @@
 #include <iostream>
 #include <math.h>
 
-#include "core/core.h"
+#include "core.h"
 
 int main(){
 
