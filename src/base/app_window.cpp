@@ -1,5 +1,7 @@
 #include "app_window.h"
 
+#include <iostream>
+
 namespace GE {
 
     AppWindow::AppWindow(const unsigned int Width, const unsigned int Height) : 
@@ -9,17 +11,19 @@ namespace GE {
         if (!glfwInit())
             exit(EXIT_FAILURE);
 
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifdef __APPLE__
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
+#endif
 
         m_window = glfwCreateWindow(Width, Height, "Simple example", NULL, NULL);
         if (!m_window){
             glfwTerminate();
             exit(EXIT_FAILURE);
         }
-
         glfwSetKeyCallback(m_window, key_callback);
-
         glfwMakeContextCurrent(m_window);
         gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
         glfwSwapInterval(1);

@@ -33,7 +33,6 @@ int main(){
   // scene.add(cube);
   // Game loop
 
-  float Time = glfwGetTime();
 
   while(!appWindow.Should_Close()){
 
