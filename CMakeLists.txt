@@ -59,7 +59,12 @@ add_library(game_engine     ${GE_CORE_BASE_SOURCES}
                             ${GE_CORE_MATERIAL_SOURCES})
 
 # Add include directory to library 'game_engine'
-target_include_directories(game_engine PUBLIC include/)
+set(GE_INCLUDE_DIRECTORIES  src/base
+                            src/camera
+                            src/geometry
+                            src/material)
+
+target_include_directories(game_engine PUBLIC   ${GE_INCLUDE_DIRECTORIES})
 # Link libraries to library 'game_engine'
 target_link_libraries(game_engine   glfw 
                                     glad 
@@ -70,7 +75,7 @@ target_link_libraries(game_engine   glfw
 # This executable is intended to be used to test the framework
 # Functionality is implemented in 'src/main.cpp'
 add_executable(${PROJECT_NAME}  main.cpp)
-target_include_directories(${PROJECT_NAME} PUBLIC include/)
+target_include_directories(${PROJECT_NAME} PUBLIC ${GE_INCLUDE_DIRECTORIES})
 target_link_libraries(${PROJECT_NAME}   game_engine
                                         glfw 
                                         glad 
