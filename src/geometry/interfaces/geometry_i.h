@@ -7,6 +7,7 @@ namespace GE{
         class Geometry_I{
         public:
             virtual void Render() const = 0;
+            virtual ~Geometry_I() {};
         };
     } 
 }

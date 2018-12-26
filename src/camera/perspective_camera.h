@@ -4,6 +4,7 @@
 #define GE_CAMERA_H
 
 #include <glm/glm.hpp>
+#include <glm/vec3.hpp>
 #include "interfaces/camera_i.h"
 
 namespace GE {

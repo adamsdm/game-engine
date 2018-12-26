@@ -10,6 +10,7 @@ namespace Material {
     class Material_I{
     public:
         virtual int Get_Program_ID() const = 0;
+        virtual ~Material_I(){};
     private:
         virtual int Create_Shader_Program(const char *vert_src, const char *frag_src) = 0;
         virtual int Compile_Shader(const char *shader_src, GLenum shaderType) = 0;

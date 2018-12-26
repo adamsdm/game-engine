@@ -5,7 +5,8 @@
 namespace GE{
     namespace Camera {
         class Camera_I{
-            
+        public:
+            virtual ~Camera_I(){}
         };
     } 
 }
