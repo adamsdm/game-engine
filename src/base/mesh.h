@@ -13,6 +13,9 @@ class Mesh{
 public:
     Mesh(const Geometry::Geometry_I &geometry, const Material::Material_I &material);
     ~Mesh();
+
+    void Render() const;
+
 private:
     const Geometry::Geometry_I &m_geometry;
     const Material::Material_I &m_material;

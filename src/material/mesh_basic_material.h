@@ -13,7 +13,7 @@ namespace GE{
             MeshBasicMaterial(float r, float g, float b);
             ~MeshBasicMaterial();
 
-            int Get_Program_ID();
+            int Get_Program_ID() const;
 
         private:
             const char *vertexShaderSource;

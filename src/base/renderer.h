@@ -8,6 +8,8 @@
 #include <glm/glm.hpp>
 
 #include "app_window.h"
+#include "scene.h"
+#include "perspective_camera.h"
 
 namespace GE {
 
@@ -19,7 +21,7 @@ public:
     void Set_Clear_Color(float red, float green, float blue, float alpha);
     void Set_Size(const unsigned int width, const unsigned int height);
     
-    void Render();
+    void Render(Scene sc, Camera::Camera_I cam);
 
 private:
     GLFWwindow* m_window;

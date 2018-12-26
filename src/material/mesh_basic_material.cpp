@@ -26,7 +26,7 @@ namespace GE{
     MeshBasicMaterial::~MeshBasicMaterial(){
     }
 
-    int MeshBasicMaterial::Get_Program_ID(){
+    int MeshBasicMaterial::Get_Program_ID() const {
       return Program_ID;
     }
 

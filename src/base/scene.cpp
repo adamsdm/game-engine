@@ -9,8 +9,8 @@ namespace GE {
     Scene::~Scene(){
     }
 
-    void Scene::add(Mesh &mesh){
-
+    void Scene::add(Mesh mesh){
+        Meshes.push_back(mesh);
     }
 
 }

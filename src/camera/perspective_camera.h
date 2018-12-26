@@ -4,11 +4,12 @@
 #define GE_CAMERA_H
 
 #include <glm/glm.hpp>
+#include "interfaces/camera_i.h"
 
 namespace GE {
 namespace Camera {
 
-class PerspectiveCamera{
+class PerspectiveCamera : public Camera_I {
 public: 
     PerspectiveCamera(float fov, float aspect, float near, float far);
     ~PerspectiveCamera();

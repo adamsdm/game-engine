@@ -5,16 +5,23 @@
 
 #include "mesh.h"
 
+#include <vector>
+
 namespace GE {
 
 class Scene{
-public:
-    Scene();
-    ~Scene();
+    public:
+        Scene();
+        ~Scene();
 
-    void add(Mesh &mesh);
-};
-
+        void add(Mesh mesh);
+        std::vector<Mesh> const& Get_Meshes() const { 
+            return Meshes; 
+        }
+        
+    private:
+        std::vector<Mesh> Meshes;
+    };
 }
 
 #endif /* GE_SCENE_H */
