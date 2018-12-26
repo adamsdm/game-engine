@@ -5,7 +5,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/vec4.hpp>
+#include <glm/glm.hpp>
 
 #include "app_window.h"
 
