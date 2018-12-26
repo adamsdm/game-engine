@@ -6,7 +6,8 @@
 #include "scene.h"
 #include "renderer.h"
 #include "camera.h"
-#include "geometry.h"
-#include "material.h"
+#include "box_geometry.h"
+#include "mesh_basic_material.h"
+#include "mesh.h"
 
 #endif

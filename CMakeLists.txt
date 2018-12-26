@@ -47,10 +47,10 @@ set(GE_CORE_BASE_SOURCES    ${GE_SRC_DIR}/base/app_window.cpp
 set(GE_CORE_CAMERA_SOURCES      ${GE_SRC_DIR}/camera/camera.cpp)
 
 # Geometry sources
-set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/geometry.cpp)
+set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/box_geometry.cpp)
 
 # Material sources
-set(GE_CORE_MATERIAL_SOURCES    ${GE_SRC_DIR}/material/material.cpp)
+set(GE_CORE_MATERIAL_SOURCES    ${GE_SRC_DIR}/material/mesh_basic_material.cpp)
 
 # Add sources to library 'game_engine'
 add_library(game_engine     ${GE_CORE_BASE_SOURCES}
@@ -62,7 +62,9 @@ add_library(game_engine     ${GE_CORE_BASE_SOURCES}
 set(GE_INCLUDE_DIRECTORIES  src/base
                             src/camera
                             src/geometry
-                            src/material)
+                            src/geometry/interfaces
+                            src/material
+                            src/material/interfaces)
 
 target_include_directories(game_engine PUBLIC   ${GE_INCLUDE_DIRECTORIES})
 # Link libraries to library 'game_engine'

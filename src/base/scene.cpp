@@ -3,10 +3,16 @@
 
 namespace GE {
     
-Scene::Scene(){
+    Scene::Scene(){
+    }
+
+    Scene::~Scene(){
+    }
+
+    void Scene::add(Mesh &mesh){
+
+    }
+
 }
 
-Scene::~Scene(){
-}
 
-}

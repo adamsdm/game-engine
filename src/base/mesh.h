@@ -4,17 +4,20 @@
 #ifndef GE_MESH_H
 #define GE_MESH_H
 
-#include "geometry.h"
-#include "material.h"
+#include "geometry_i.h"
+#include "material_i.h"
 
 namespace GE{
 
 class Mesh{
 public:
-    Mesh(Geometry::BoxGeometry geo, Material::MeshBasicMaterial mat);
+    Mesh(const Geometry::Geometry_I &geometry, const Material::Material_I &material);
     ~Mesh();
+private:
+    const Geometry::Geometry_I &m_geometry;
+    const Material::Material_I &m_material;
 };
 
-}
+};
 
 #endif /* GE_GEOMETRY_H */

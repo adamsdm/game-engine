@@ -1,5 +1,5 @@
 
-#include "material.h"
+#include "mesh_basic_material.h"
 
 namespace GE{
   namespace Material {

@@ -1,5 +1,5 @@
 
-#include "geometry.h"
+#include "box_geometry.h"
 
 
 namespace GE{
@@ -13,6 +13,10 @@ namespace GE{
     
     BoxGeometry::~BoxGeometry(){
 
+    }
+
+    void BoxGeometry::render(){
+      
     }
   } 
 }
