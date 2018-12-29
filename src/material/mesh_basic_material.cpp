@@ -5,25 +5,50 @@ namespace GE{
   namespace Material {
 
     MeshBasicMaterial::MeshBasicMaterial(float r, float g, float b){
-      
-      // TODO: Replace this with read from file 
-      vertexShaderSource = "#version 330 core\n"
-          "layout (location = 0) in vec3 aPos;\n"
-          "void main()\n"
-          "{\n"
-          "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-          "}\0";
-      fragmentShaderSource = "#version 330 core\n"
-          "out vec4 FragColor;\n"
-          "void main()\n"
-          "{\n"
-          "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-          "}\n\0";
 
-      Program_ID = Create_Shader_Program(vertexShaderSource, fragmentShaderSource);
+    	std::string vStringSrc = Read_From_File("resources/shaders/mesh_basic_material.vert");
+    	std::string fStringSrc = Read_From_File("resources/shaders/mesh_basic_material.frag");
+
+    	// Convert string to char array
+    	vertexShaderSource = vStringSrc.c_str();
+    	fragmentShaderSource = fStringSrc.c_str();
+
+    	Program_ID = Create_Shader_Program(vertexShaderSource, fragmentShaderSource);
     }
 
     MeshBasicMaterial::~MeshBasicMaterial(){
+	}
+
+    std::string MeshBasicMaterial::Read_From_File(const char* path){
+
+    	std::string code;
+
+    	std::ifstream file;
+
+    	file.exceptions (std::ifstream::failbit | std::ifstream::badbit);
+
+    	try
+    	{
+    		// open files
+    		file.open(path);
+
+    		std::stringstream stream;
+    		// read file's buffer contents into streams
+			stream << file.rdbuf();
+
+    		// close file handlers
+    		file.close();
+    		// convert stream into string
+    		code = stream.str();
+
+    	}
+    	catch(std::ifstream::failure e)
+    	{
+    		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+			exit(-1);
+    	}
+
+    	return code;
     }
 
     int MeshBasicMaterial::Get_Program_ID() const {

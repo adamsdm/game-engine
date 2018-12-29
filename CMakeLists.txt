@@ -67,6 +67,15 @@ set(GE_INCLUDE_DIRECTORIES  src/base
                             src/material
                             src/material/interfaces)
 
+# copy resource folder on each 'make'
+add_custom_target(copy_res_directory ALL
+COMMAND ${CMAKE_COMMAND} -E copy_directory 
+    "${CMAKE_SOURCE_DIR}/resources" "${CMAKE_BINARY_DIR}/resources"
+COMMENT "Copy res directory to build tree"
+VERBATIM)
+
+add_dependencies(game_engine copy_res_directory)
+
 target_include_directories(game_engine PUBLIC   ${GE_INCLUDE_DIRECTORIES})
 # Link libraries to library 'game_engine'
 target_link_libraries(game_engine   glfw 
