@@ -4,7 +4,9 @@
 namespace GE{
   namespace Material {
 
-    MeshBasicMaterial::MeshBasicMaterial(float r, float g, float b){
+    MeshBasicMaterial::MeshBasicMaterial(float r, float g, float b, float a) :
+    		Color(r, g, b, a)
+	{
 
     	std::string vStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.vert");
     	std::string fStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.frag");
@@ -22,6 +24,10 @@ namespace GE{
     int MeshBasicMaterial::Get_Program_ID() const {
       return Program_ID;
     }
+
+    void MeshBasicMaterial::Update_Uniforms() const {
+    	Set_Uniform_Vec4(Program_ID, "Color", Color);
+	}
 
     int MeshBasicMaterial::Create_Shader_Program(const char *vert_src, const char *frag_src){
   

@@ -20,11 +20,10 @@ int main(){
   renderer.Set_Size( appWindow.Get_Width(), appWindow.Get_Height());
 
   GE::Geometry::PlaneGeometry geometry1(1.5f, 0.2f);
-  GE::Material::MeshBasicMaterial material1(1.0f, 0.0f, 0.0f);
-
+  GE::Material::MeshBasicMaterial material1(1.0f, 0.0f, 0.0f, 1.0f);
 
   GE::Geometry::PlaneGeometry geometry2(0.2f, 1.5f);
-  GE::Material::MeshBasicMaterial material2(1.0f, 0.0f, 0.0f);
+  GE::Material::MeshBasicMaterial material2(0.0f, 1.0f, 0.0f, 1.0f);
 
   GE::Mesh cube1(geometry1, material1);
   GE::Mesh cube2(geometry2, material2);

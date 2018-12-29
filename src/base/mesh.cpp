@@ -15,6 +15,7 @@ namespace GE{
 
     void Mesh::Render() const {
         glUseProgram(m_material.Get_Program_ID());
+        m_material.Update_Uniforms();
         m_geometry.Render();
     }
 
