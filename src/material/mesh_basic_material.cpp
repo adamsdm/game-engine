@@ -6,8 +6,8 @@ namespace GE{
 
     MeshBasicMaterial::MeshBasicMaterial(float r, float g, float b){
 
-    	std::string vStringSrc = Read_From_File("resources/shaders/mesh_basic_material.vert");
-    	std::string fStringSrc = Read_From_File("resources/shaders/mesh_basic_material.frag");
+    	std::string vStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.vert");
+    	std::string fStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.frag");
 
     	// Convert string to char array
     	vertexShaderSource = vStringSrc.c_str();
@@ -18,38 +18,6 @@ namespace GE{
 
     MeshBasicMaterial::~MeshBasicMaterial(){
 	}
-
-    std::string MeshBasicMaterial::Read_From_File(const char* path){
-
-    	std::string code;
-
-    	std::ifstream file;
-
-    	file.exceptions (std::ifstream::failbit | std::ifstream::badbit);
-
-    	try
-    	{
-    		// open files
-    		file.open(path);
-
-    		std::stringstream stream;
-    		// read file's buffer contents into streams
-			stream << file.rdbuf();
-
-    		// close file handlers
-    		file.close();
-    		// convert stream into string
-    		code = stream.str();
-
-    	}
-    	catch(std::ifstream::failure e)
-    	{
-    		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
-			exit(-1);
-    	}
-
-    	return code;
-    }
 
     int MeshBasicMaterial::Get_Program_ID() const {
       return Program_ID;

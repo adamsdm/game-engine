@@ -52,11 +52,15 @@ set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/plane_geometry.cpp)
 # Material sources
 set(GE_CORE_MATERIAL_SOURCES    ${GE_SRC_DIR}/material/mesh_basic_material.cpp)
 
+# Utilities sources
+set(GE_CORE_UTILITIES_SOURCES   ${GE_SRC_DIR}/utilities/utilities.cpp)
+
 # Add sources to library 'game_engine'
 add_library(game_engine     ${GE_CORE_BASE_SOURCES}
                             ${GE_CORE_CAMERA_SOURCES}
                             ${GE_CORE_GEOMETRY_SOURCES}
-                            ${GE_CORE_MATERIAL_SOURCES})
+                            ${GE_CORE_MATERIAL_SOURCES}
+                            ${GE_CORE_UTILITIES_SOURCES})
 
 # Add include directory to library 'game_engine'
 set(GE_INCLUDE_DIRECTORIES  src/base
@@ -65,7 +69,8 @@ set(GE_INCLUDE_DIRECTORIES  src/base
                             src/geometry
                             src/geometry/interfaces
                             src/material
-                            src/material/interfaces)
+                            src/material/interfaces
+                            src/utilities/)
 
 # copy resource folder on each 'make'
 add_custom_target(copy_res_directory ALL

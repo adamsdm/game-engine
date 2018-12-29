@@ -3,6 +3,7 @@
 #define GE_MESH_BASIC_MATERIAL_H
 
 #include "interfaces/material_i.h"
+#include "utilities.h"
 #include <glad/glad.h>
 #include <string>
 #include <fstream>
@@ -22,8 +23,6 @@ namespace GE{
             const char *vertexShaderSource;
             const char *fragmentShaderSource;
             int Program_ID;
-
-            std::string Read_From_File(const char* path);
 
             int Create_Shader_Program(const char *vert_src, const char *frag_src);
             int Compile_Shader(const char  *shader_src, GLenum shaderType);
