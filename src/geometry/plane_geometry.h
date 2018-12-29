@@ -2,8 +2,8 @@
 #ifndef GE_PLANE_GEOMETRY_H
 #define GE_PLANE_GEOMETRY_H
 
+#include <geometry.h>
 #include <glad/glad.h>
-#include "interfaces/geometry_i.h"
 
 namespace GE{
 namespace Geometry {

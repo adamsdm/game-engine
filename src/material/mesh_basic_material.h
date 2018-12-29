@@ -2,9 +2,9 @@
 #ifndef GE_MESH_BASIC_MATERIAL_H
 #define GE_MESH_BASIC_MATERIAL_H
 
-#include "interfaces/material_i.h"
 #include "utilities.h"
 #include <glad/glad.h>
+#include <material.h>
 #include <string>
 #include <fstream>
 #include <sstream>

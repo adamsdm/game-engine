@@ -4,8 +4,8 @@
 #ifndef GE_MESH_H
 #define GE_MESH_H
 
-#include "geometry_i.h"
-#include "material_i.h"
+#include "geometry.h"
+#include "material.h"
 
 namespace GE{
 
