@@ -10,10 +10,10 @@ namespace GE{
     	std::string fStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.frag");
 
     	// Convert string to char array
-    	vertexShaderSource = vStringSrc.c_str();
-    	fragmentShaderSource = fStringSrc.c_str();
+    	Vert_Shader_Source = vStringSrc.c_str();
+    	Frag_Shader_Source = fStringSrc.c_str();
 
-    	Program_ID = Create_Shader_Program(vertexShaderSource, fragmentShaderSource);
+    	Program_ID = Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
     }
 
     MeshBasicMaterial::~MeshBasicMaterial(){

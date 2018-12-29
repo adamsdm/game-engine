@@ -20,8 +20,8 @@ namespace GE{
             int Get_Program_ID() const;
 
         private:
-            const char *vertexShaderSource;
-            const char *fragmentShaderSource;
+            const char *Vert_Shader_Source;
+            const char *Frag_Shader_Source;
             int Program_ID;
 
             int Create_Shader_Program(const char *vert_src, const char *frag_src);
