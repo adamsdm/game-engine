@@ -8,8 +8,10 @@ namespace GE {
         m_width(Width),
         m_height(Height)
     {
-        if (!glfwInit())
+        if (!glfwInit()){
+        	std::cerr << "ERROR:: Failed to initialize GLFW" << std::endl;
             exit(EXIT_FAILURE);
+        }
 
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -21,12 +23,16 @@ namespace GE {
         m_window = glfwCreateWindow(Width, Height, "Simple example", NULL, NULL);
         if (!m_window){
             glfwTerminate();
+            std::cerr << "ERROR:: Failed to create GLFW window" << std::endl;
             exit(EXIT_FAILURE);
         }
         glfwSetKeyCallback(m_window, key_callback);
         glfwMakeContextCurrent(m_window);
         gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
         glfwSwapInterval(1);
+
+        // Configure global opengl state
+        glEnable(GL_DEPTH_TEST);
     }
     
     AppWindow::~AppWindow(){
