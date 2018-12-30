@@ -28,9 +28,15 @@ int main(){
   GE::Mesh cube1(geometry1, material1);
   GE::Mesh cube2(geometry2, material2);
 
+  cube1.Set_Position(0.0f, 0.5f, 0.0f);
+  cube2.Set_Position(0.0f, 0.5f, 0.0f);
   
+  cube1.Set_Rotation(45, 1.0f, 0.0f, 0.0f);
+  cube2.Set_Rotation(45, 1.0f, 0.0f, 0.0f);
+
   scene.add(cube1);
   scene.add(cube2);
+
 
   // Game loop
   while(!appWindow.Should_Close()){

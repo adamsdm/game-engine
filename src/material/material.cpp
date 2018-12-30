@@ -24,6 +24,9 @@ namespace Material {
 	void Material_I::Set_Uniform_Vec4(int Program_ID, const std::string &name, glm::vec4 value) const {
 		glUniform4f(glGetUniformLocation(Program_ID, name.c_str()), value.x, value.y, value.z, value.w);
 	}
+	void Material_I::Set_Uniform_Mat4(int Program_ID, const std::string &name, const glm::mat4 &mat) const{
+		glUniformMatrix4fv(glGetUniformLocation(Program_ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+	}
 }
 }
 

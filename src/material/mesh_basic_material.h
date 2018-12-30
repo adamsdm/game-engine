@@ -11,6 +11,7 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
 
 namespace GE{
     namespace Material {
@@ -21,6 +22,9 @@ namespace GE{
 
             int Get_Program_ID() const;
             void Update_Uniforms() const;
+            void Set_View_Matrix(glm::mat4 view_matrix);
+            void Set_Projection_Matrix(glm::mat4 projection_matrix);
+            void Set_Model_Matrix(glm::mat4 model_matrix);
 
         private:
             const char *Vert_Shader_Source;

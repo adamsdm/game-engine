@@ -25,6 +25,17 @@ namespace GE{
       return Program_ID;
     }
 
+    void MeshBasicMaterial::Set_View_Matrix(glm::mat4 view_matrix) {
+    	Set_Uniform_Mat4(Program_ID, "View", view_matrix);
+    }
+
+    void MeshBasicMaterial::Set_Projection_Matrix(glm::mat4 projection_matrix){
+    	Set_Uniform_Mat4(Program_ID, "Projection", projection_matrix);
+    }
+    void MeshBasicMaterial::Set_Model_Matrix(glm::mat4 model_matrix){
+    	Set_Uniform_Mat4(Program_ID, "Model", model_matrix);
+    }
+
     void MeshBasicMaterial::Update_Uniforms() const {
     	Set_Uniform_Vec4(Program_ID, "Color", Color);
 	}

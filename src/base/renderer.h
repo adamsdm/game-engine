@@ -21,7 +21,7 @@ public:
     void Set_Clear_Color(float red, float green, float blue, float alpha);
     void Set_Size(const unsigned int width, const unsigned int height);
     
-    void Render(Scene sc, Camera::Camera_I cam);
+    void Render(Scene sc, Camera::Camera_I &cam);
 
 private:
     GLFWwindow* m_window;

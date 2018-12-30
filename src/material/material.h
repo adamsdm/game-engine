@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
 
 namespace GE{
 namespace Material {
@@ -16,6 +17,9 @@ namespace Material {
         virtual int Get_Program_ID() const = 0;
         virtual void Update_Uniforms() const = 0;
         virtual ~Material_I(){};
+        virtual void Set_View_Matrix(glm::mat4 view_matrix) = 0;
+        virtual void Set_Projection_Matrix(glm::mat4 projection_matrix) = 0;
+        virtual void Set_Model_Matrix(glm::mat4 model_matrix) = 0;
     private:
         virtual int Create_Shader_Program(const char *vert_src, const char *frag_src) = 0;
         virtual int Compile_Shader(const char *shader_src, GLenum shaderType) = 0;
@@ -26,6 +30,7 @@ namespace Material {
         void Set_Uniform_Float(int Program_ID, const std::string &name, float value) const;
         void Set_Uniform_Vec3(int Program_ID, const std::string &name, glm::vec3 value) const;
         void Set_Uniform_Vec4(int Program_ID, const std::string &name, glm::vec4 value) const;
+        void Set_Uniform_Mat4(int Program_ID, const std::string &name, const glm::mat4 &mat) const;
     };
 } 
 }
