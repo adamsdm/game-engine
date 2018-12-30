@@ -25,22 +25,16 @@ int main(){
   GE::Geometry::PlaneGeometry geometry2(0.2f, 1.5f);
   GE::Material::MeshBasicMaterial material2(0.0f, 1.0f, 0.0f, 1.0f);
 
-  GE::Mesh cube1(geometry1, material1);
-  GE::Mesh cube2(geometry2, material2);
-
-  cube1.Set_Position(0.0f, 0.5f, 0.0f);
-  cube2.Set_Position(0.0f, 0.5f, 0.0f);
-  
-  cube1.Set_Rotation(45, 1.0f, 0.0f, 0.0f);
-  cube2.Set_Rotation(45, 1.0f, 0.0f, 0.0f);
+  GE::Mesh* cube1 = new GE::Mesh(geometry1, material1);
+  GE::Mesh* cube2 = new GE::Mesh(geometry2, material2);
 
   scene.add(cube1);
   scene.add(cube2);
 
-
   // Game loop
   while(!appWindow.Should_Close()){
-
+	cube1->Set_Rotation((float) glm::radians(10.0f), 1.0f, 0.0f, 0.0f);
+	cube2->Set_Rotation((float) glm::radians(10.0f), 1.0f, 0.0f, 1.0f);
     renderer.Render(scene, camera);
   }
 

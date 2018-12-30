@@ -34,7 +34,7 @@ void Renderer::Render(Scene scene, Camera::Camera_I &cam){
 
     // TODO: Render logic 
     for(int i=0; i<scene.Get_Meshes().size(); i++){
-    	scene.Get_Meshes()[i].Render(cam);
+    	scene.Get_Meshes()[i]->Render(cam);
     }
 
 

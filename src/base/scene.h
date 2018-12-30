@@ -14,13 +14,13 @@ class Scene{
         Scene();
         ~Scene();
 
-        void add(Mesh mesh);
-        std::vector<Mesh> const& Get_Meshes() const { 
+        void add(Mesh* mesh);
+        std::vector<Mesh*> const& Get_Meshes() const {
             return Meshes; 
         }
         
     private:
-        std::vector<Mesh> Meshes;
+        std::vector<Mesh*> Meshes;
     };
 }
 
