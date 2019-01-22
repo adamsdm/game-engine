@@ -8,6 +8,11 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 #include <glm/mat4x4.hpp>
+#include <iostream>
+
+/**
+ * Abstract main material class, inherit from this class for future materials
+ */
 
 namespace GE{
 namespace Material {
@@ -20,11 +25,11 @@ namespace Material {
         virtual void Set_View_Matrix(glm::mat4 view_matrix) = 0;
         virtual void Set_Projection_Matrix(glm::mat4 projection_matrix) = 0;
         virtual void Set_Model_Matrix(glm::mat4 model_matrix) = 0;
-    private:
-        virtual int Create_Shader_Program(const char *vert_src, const char *frag_src) = 0;
-        virtual int Compile_Shader(const char *shader_src, GLenum shaderType) = 0;
-        virtual int Link_Shaders(int vertexShader, int fragmentShader) = 0;
     protected:
+        int Create_Shader_Program(const char *vert_src, const char *frag_src);
+        int Compile_Shader(const char *shader_src, GLenum shaderType);
+        int Link_Shaders(int vertexShader, int fragmentShader);
+
         void Set_Uniform_Bool(int Program_ID, const std::string &name, bool value) const;
         void Set_Uniform_Int(int Program_ID, const std::string &name, int value) const;
         void Set_Uniform_Float(int Program_ID, const std::string &name, float value) const;

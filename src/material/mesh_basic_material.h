@@ -31,10 +31,6 @@ namespace GE{
             const char *Frag_Shader_Source;
             int Program_ID;
             glm::vec4 Color;
-
-            int Create_Shader_Program(const char *vert_src, const char *frag_src);
-            int Compile_Shader(const char  *shader_src, GLenum shaderType);
-            int Link_Shaders(int vertexShader, int fragmentShader);
         };
     } 
 }

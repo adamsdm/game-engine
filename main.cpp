@@ -11,7 +11,7 @@ int main(){
   GE::AppWindow appWindow(800, 600);  
   GE::Scene scene;
   GE::Renderer renderer(appWindow);
-  
+
   float WindowRatio = (float)appWindow.Get_Width() / (float)appWindow.Get_Height();
   GE::Camera::PerspectiveCamera camera( 75, WindowRatio, 0.1, 1000);
   camera.Set_Position(glm::vec3(0.0f, 0.0f, 4.0f));
@@ -28,7 +28,7 @@ int main(){
   GE::Mesh* Plane2 = new GE::Mesh(geometry2, material2);
 
   GE::Geometry::BoxGeometry geometry3(0.1f, 0.1f, 0.1f);
-  GE::Material::MeshBasicMaterial material3(0.0f, 0.0f, 1.0f, 1.0f);
+  GE::Material::MeshPhongMaterial material3(0.0f, 0.0f, 1.0f, 1.0f);
 
   GE::Mesh* Box = new GE::Mesh(geometry3, material3);
 
@@ -37,7 +37,6 @@ int main(){
   scene.add(Plane1);
   scene.add(Plane2);
   scene.add(Box);
-
 
   // Game loop
   while(!appWindow.Should_Close()){

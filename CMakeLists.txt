@@ -54,7 +54,8 @@ set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/geometry.cpp
 
 # Material sources
 set(GE_CORE_MATERIAL_SOURCES    ${GE_SRC_DIR}/material/material.cpp
-								${GE_SRC_DIR}/material/mesh_basic_material.cpp)
+								${GE_SRC_DIR}/material/mesh_basic_material.cpp
+								${GE_SRC_DIR}/material/mesh_phong_material.cpp)
 
 # Utilities sources
 set(GE_CORE_UTILITIES_SOURCES   ${GE_SRC_DIR}/utilities/utilities.cpp)
