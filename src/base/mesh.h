@@ -25,7 +25,9 @@ public:
     void Render(Camera::Camera_I &cam) const;
 
 private:
-    glm::mat4 Model_Matrix;
+    glm::vec3 Position;
+    glm::vec4 Rotation;
+    glm::vec3 Scale;
     const Geometry::Geometry_I &m_geometry;
     Material::Material_I &m_material;
 };

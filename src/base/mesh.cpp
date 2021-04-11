@@ -12,7 +12,9 @@ namespace GE{
     Mesh::Mesh(const Geometry::Geometry_I &geometry, Material::Material_I &material) :
         m_geometry(geometry),
         m_material(material),
-    	Model_Matrix(1.0f)
+        Position(1.0f),
+        Rotation(1.0f),
+        Scale(1.0f)
     {
     }
     
@@ -20,14 +22,24 @@ namespace GE{
     }
 
     void Mesh::Set_Position(float x, float y, float z){
-    	Model_Matrix = glm::translate(Model_Matrix, glm::vec3(x,y,z));
+        Position.x = x;
+        Position.y = y;
+        Position.z = z;
     }
-    void Mesh::Set_Rotation(float angle, float x, float y, float z){
-    	Model_Matrix = glm::rotate(Model_Matrix, glm::radians(angle), glm::vec3(x, y, z));
+    void Mesh::Set_Rotation(float angle, float x, float y, float z) {
+        Rotation.x = x;
+        Rotation.y = z;
+        Rotation.z = x;
+        Rotation.w = angle;
     }
 
     void Mesh::Render(Camera::Camera_I &cam) const {
         glUseProgram(m_material.Get_Program_ID());
+
+        glm::mat4 Model_Matrix(1.0f);
+        Model_Matrix = glm::translate(Model_Matrix, Position);
+        Model_Matrix = glm::rotate(Model_Matrix, Rotation.w, glm::vec3(Rotation.x, Rotation.y, Rotation.z) );
+        Model_Matrix = glm::scale(Model_Matrix, Scale);
 
         m_material.Set_View_Matrix(cam.Get_View_Matrix());
         m_material.Set_Projection_Matrix(cam.Get_Projection_Matrix());

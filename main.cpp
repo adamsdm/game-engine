@@ -32,24 +32,23 @@ int main(){
 
   GE::Mesh* Box = new GE::Mesh(geometry3, material3);
 
-  Box->Set_Position(1.5f, 0.0f, 0.0f);
-
   scene.add(Plane1);
   scene.add(Plane2);
   scene.add(Box);
 
+  float time = 0;
   // Game loop
   while(!appWindow.Should_Close()){
+    time = glfwGetTime();
 
-	Plane1->Set_Rotation((float) glm::radians(10.0f), 1.0f, 0.0f, 0.0f);
-	Plane2->Set_Rotation((float) glm::radians(10.0f), 1.0f, 0.0f, 1.0f);
-	Box->Set_Rotation((float) glm::radians(10.0f), 1.0f, 0.0f, 0.5f);
-
+    Box->Set_Position(2.0f * sin(time), 0, 2.0f * cos(time));
+	  Box->Set_Rotation((float) glm::radians(time * 150.0f), 0.0f, 0.0f, 1.0f);
     renderer.Render(scene, camera);
   }
 
   delete Plane1;
   delete Plane2;
+  delete Box;
 
   return 0;
 }
