@@ -12,8 +12,8 @@ namespace GE{
     Mesh::Mesh(const Geometry::Geometry_I &geometry, Material::Material_I &material) :
         m_geometry(geometry),
         m_material(material),
-        Position(1.0f),
-        Rotation(1.0f),
+        Position(0.0f),
+        Rotation(0.0f, 1.0f, 0.0f, 0.0f),
         Scale(1.0f)
     {
     }
@@ -28,9 +28,17 @@ namespace GE{
     }
     void Mesh::Set_Rotation(float angle, float x, float y, float z) {
         Rotation.x = x;
-        Rotation.y = z;
-        Rotation.z = x;
+        Rotation.y = y;
+        Rotation.z = z;
         Rotation.w = angle;
+    }
+
+    glm::vec3 Mesh::Get_Position() const {
+        return Position;
+    }
+
+    glm::vec4 Mesh::Get_Rotation() const {
+        return Rotation;
     }
 
     void Mesh::Render(Camera::Camera_I &cam) const {

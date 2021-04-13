@@ -14,7 +14,6 @@ int main(){
 
   float WindowRatio = (float)appWindow.Get_Width() / (float)appWindow.Get_Height();
   GE::Camera::PerspectiveCamera camera( 75, WindowRatio, 0.1, 1000);
-  camera.Set_Position(glm::vec3(0.0f, 0.0f, 4.0f));
     
   renderer.Set_Clear_Color(0.1f, 0.1f, 0.1f, 1.0f);
   renderer.Set_Size( appWindow.Get_Width(), appWindow.Get_Height());
@@ -40,9 +39,10 @@ int main(){
   // Game loop
   while(!appWindow.Should_Close()){
     time = glfwGetTime();
+    
+    Box->Set_Position(2.0f * cos(time), 2.0f * sin(time), 0.0f);
+    Box->Set_Rotation(time*3.14, 0.0f, 1.0f, 0.0f);
 
-    Box->Set_Position(2.0f * sin(time), 0, 2.0f * cos(time));
-	  Box->Set_Rotation((float) glm::radians(time * 150.0f), 0.0f, 0.0f, 1.0f);
     renderer.Render(scene, camera);
   }
 

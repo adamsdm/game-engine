@@ -20,8 +20,13 @@ public:
     void Set_Position(glm::vec3 New_Position);
     glm::mat4 Get_View_Matrix() const;
     glm::mat4 Get_Projection_Matrix() const;
+    glm::vec3 Get_Position() const;
 
 private:
+
+    void Calculate_View_Matrix();
+    void Calculate_Projection_Matrix();
+
     float m_fov;
     float m_aspect;
     float m_near;

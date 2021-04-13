@@ -22,6 +22,9 @@ public:
     void Set_Position(float x, float y, float z);
     void Set_Rotation(float angle, float x, float y, float z);
 
+    glm::vec3 Get_Position() const;
+    glm::vec4 Get_Rotation() const;
+
     void Render(Camera::Camera_I &cam) const;
 
 private:
