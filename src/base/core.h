@@ -11,5 +11,5 @@
 #include "mesh_basic_material.h"
 #include "mesh_phong_material.h"
 #include "mesh.h"
-
+#include "ge_types.h"
 #endif

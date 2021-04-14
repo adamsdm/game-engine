@@ -6,10 +6,12 @@
 
 #include <glm/glm.hpp>
 #include <glm/mat4x4.hpp>
+#include <vector>
 
 #include "geometry.h"
 #include "material.h"
 #include "camera.h"
+#include "ge_types.h"
 
 
 namespace GE{
@@ -31,6 +33,12 @@ private:
     glm::vec3 Position;
     glm::vec4 Rotation;
     glm::vec3 Scale;
+
+    //TODO: Currently unused
+    std::vector<Vertex>       Vertices;
+    std::vector<unsigned int> Indices;
+    std::vector<Texture>      Textures;
+
     const Geometry::Geometry_I &m_geometry;
     Material::Material_I &m_material;
 };

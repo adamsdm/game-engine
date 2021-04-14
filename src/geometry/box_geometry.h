@@ -14,7 +14,7 @@
 namespace GE{
 namespace Geometry {
 
-class BoxGeometry: public GE::Geometry::Geometry_I {
+class BoxGeometry: public Geometry_I {
 public:
 	BoxGeometry(float width, float height, float depth);
 	virtual ~BoxGeometry();
@@ -25,6 +25,7 @@ public:
 private:
     unsigned int VBO;
     unsigned int VAO;
+    unsigned int EBO;
 
     float m_width;
     float m_height;
