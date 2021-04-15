@@ -47,13 +47,17 @@ namespace GE{
 
     }
 
+    std::vector<Vertex> PlaneGeometry::Get_Vertices() const {
+      return Vertices;
+    }
+
+    std::vector<unsigned int> PlaneGeometry::Get_Indices() const {
+      return Indices;
+    }
+
     void PlaneGeometry::Render() const {
       glBindVertexArray(VAO);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    }
-
-    int PlaneGeometry::Get_VAO_ID(){
-      return VAO;
     }
   } 
 }

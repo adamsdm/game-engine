@@ -14,10 +14,12 @@ public:
     ~PlaneGeometry();
     void Render() const;
 
-    int Get_VAO_ID();
+    std::vector<Vertex> Get_Vertices() const;
+    std::vector<unsigned int> Get_Indices() const;
 
 private:
-
+    std::vector<Vertex> Vertices;
+    std::vector<unsigned int> Indices;
     unsigned int VBO; 
     unsigned int VAO;
     unsigned int EBO;

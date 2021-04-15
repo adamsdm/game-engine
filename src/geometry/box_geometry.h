@@ -20,9 +20,10 @@ class BoxGeometry: public Geometry_I {
 public:
 	BoxGeometry(float width, float height, float depth);
 	virtual ~BoxGeometry();
-	void Render() const;
+	void Render() const override;
 
-	int Get_VAO_ID();
+    std::vector<Vertex> Get_Vertices() const override;
+    std::vector<unsigned int> Get_Indices() const override;
 
 private:
     std::vector<Vertex> Vertices;

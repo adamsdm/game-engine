@@ -107,6 +107,9 @@ BoxGeometry::BoxGeometry(float width, float height, float depth) :
 
 }
 
+std::vector<Vertex> BoxGeometry::Get_Vertices() const { return Vertices; }
+std::vector<unsigned int> BoxGeometry::Get_Indices() const { return Indices; }
+
 void BoxGeometry::Render() const {
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
