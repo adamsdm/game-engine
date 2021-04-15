@@ -11,6 +11,7 @@
 #include <geometry.h>
 #include <glad/glad.h>
 #include <vector>
+#include <ge_types.h>
 
 namespace GE{
 namespace Geometry {
@@ -24,7 +25,7 @@ public:
 	int Get_VAO_ID();
 
 private:
-    std::vector<float> Vertices;
+    std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
     unsigned int VBO;
     unsigned int VAO;
