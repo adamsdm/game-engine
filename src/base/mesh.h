@@ -34,7 +34,9 @@ private:
     glm::vec4 Rotation;
     glm::vec3 Scale;
 
-    //TODO: Currently unused
+    unsigned int VBO; 
+    unsigned int VAO;
+    unsigned int EBO;
     std::vector<Vertex>       Vertices;
     std::vector<unsigned int> Indices;
     std::vector<Texture>      Textures;
