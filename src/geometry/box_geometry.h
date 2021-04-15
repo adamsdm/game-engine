@@ -10,6 +10,7 @@
 
 #include <geometry.h>
 #include <glad/glad.h>
+#include <vector>
 
 namespace GE{
 namespace Geometry {
@@ -23,6 +24,8 @@ public:
 	int Get_VAO_ID();
 
 private:
+    std::vector<float> Vertices;
+    std::vector<unsigned int> Indices;
     unsigned int VBO;
     unsigned int VAO;
     unsigned int EBO;

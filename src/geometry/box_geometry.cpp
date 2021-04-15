@@ -15,7 +15,7 @@ BoxGeometry::BoxGeometry(float width, float height, float depth) :
 		m_height(height),
 		m_depth(depth)
 {
-	float vertices[] = {
+	Vertices = {
 		// Position				// Tex pos	  // Normal
 		// Back
 		-0.5f,	-0.5f,  -0.5f,  0.0f,  0.0f,   0.0f,  0.0f, -1.0f,	
@@ -61,7 +61,7 @@ BoxGeometry::BoxGeometry(float width, float height, float depth) :
 		-0.5f,   0.5f,  -0.5f,  0.0f,  1.0f,   0.0f,  1.0f,  0.0f
 	};
 
-	int indices[] = {
+	Indices = {
 		0,   1,  2,
 		3,   4,  5,
 		6,   7,  8,
@@ -83,7 +83,7 @@ BoxGeometry::BoxGeometry(float width, float height, float depth) :
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(float), &Vertices[0], GL_STATIC_DRAW);
 
 	// position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
@@ -98,7 +98,7 @@ BoxGeometry::BoxGeometry(float width, float height, float depth) :
 	glEnableVertexAttribArray(2);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(unsigned int), &Indices[0], GL_STATIC_DRAW);
 
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0); 
