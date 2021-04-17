@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(game_engine_test    VERSION 0.0.0)
 
+set(CMAKE_BUILD_TYPE Debug)
 
 if(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
     message(FATAL_ERROR "ERROR::In source build prohibited, please specify different build directory")
