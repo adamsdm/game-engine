@@ -17,6 +17,7 @@ set(EXT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
 set(GLM_DIR     ${EXT_DIR}/glm)
 set(GLFW_DIR    ${EXT_DIR}/glfw)
 set(GLAD_DIR    ${EXT_DIR}/glad)
+set(STB_DIR     ${EXT_DIR}/stb)
 
 
 ### EXTERNALS
@@ -32,6 +33,9 @@ add_subdirectory(${GLAD_DIR})
 # glm
 add_subdirectory(${GLM_DIR})
 include_directories(${GLM_DIR})
+
+#stb
+include_directories(${STB_DIR})
 
 ### GAME ENGINE LIBRARY
 
