@@ -61,6 +61,11 @@ namespace GE {
     {
         if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
             glfwSetWindowShouldClose(window, GLFW_TRUE);
+        if (key == GLFW_KEY_E && action == GLFW_PRESS){
+            glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+        } else if(key == GLFW_KEY_R && action == GLFW_PRESS){
+            glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+        }
     }
 
 }
