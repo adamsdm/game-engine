@@ -18,13 +18,12 @@ int main(){
   renderer.Set_Clear_Color(0.1f, 0.1f, 0.1f, 1.0f);
   renderer.Set_Size( appWindow.Get_Width(), appWindow.Get_Height());
 
-  GE::Geometry::PlaneGeometry geometry1(1.5f, 0.2f);
-  GE::Material::MeshBasicMaterial material1(1.0f, 0.0f, 0.0f, 1.0f);
-  GE::Mesh* Plane1 = new GE::Mesh(geometry1, material1);
+  GE::Geometry::PlaneGeometry geometry1(20.0f, 20.0f, 10, 10);
+  GE::Material::MeshPhongMaterial material1(0.0f, 1.0f, 0.0f, 1.0f);
 
-  GE::Geometry::PlaneGeometry geometry2(0.2f, 1.5f);
-  GE::Material::MeshBasicMaterial material2(0.0f, 1.0f, 0.0f, 1.0f);
-  GE::Mesh* Plane2 = new GE::Mesh(geometry2, material2);
+  GE::Mesh* Plane1 = new GE::Mesh(geometry1, material1);
+  Plane1->Set_Position(0.0f, -2.0f, 0.0f);
+  Plane1->Set_Rotation(-3.14/2.0f, 1.0f, 0.0f, 0.0f);
 
   GE::Geometry::BoxGeometry geometry3(0.1f, 0.1f, 0.1f);
   GE::Material::MeshPhongMaterial material3(0.0f, 0.0f, 1.0f, 1.0f);
@@ -32,7 +31,6 @@ int main(){
   GE::Mesh* Box = new GE::Mesh(geometry3, material3);
 
   scene.add(Plane1);
-  scene.add(Plane2);
   scene.add(Box);
 
   float time = 0;
@@ -47,7 +45,6 @@ int main(){
   }
 
   delete Plane1;
-  delete Plane2;
   delete Box;
 
   return 0;
