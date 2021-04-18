@@ -18,12 +18,10 @@ int main(){
   renderer.Set_Clear_Color(0.1f, 0.1f, 0.1f, 1.0f);
   renderer.Set_Size( appWindow.Get_Width(), appWindow.Get_Height());
 
-  GE::Geometry::PlaneGeometry geometry1(20.0f, 20.0f, 10, 10);
-  GE::Material::MeshPhongMaterial material1(0.0f, 1.0f, 0.0f, 1.0f);
+  GE::Geometry::PlaneGeometry geometry1(2.0f, 2.0f, 1, 1);
+  GE::Material::MeshBasicMaterial material1(0.0f, 1.0f, 0.0f, 1.0f);
 
   GE::Mesh* Plane1 = new GE::Mesh(geometry1, material1);
-  Plane1->Set_Position(0.0f, -2.0f, 0.0f);
-  Plane1->Set_Rotation(-3.14/2.0f, 1.0f, 0.0f, 0.0f);
 
   GE::Geometry::BoxGeometry geometry3(0.1f, 0.1f, 0.1f);
   GE::Material::MeshPhongMaterial material3(0.0f, 0.0f, 1.0f, 1.0f);
