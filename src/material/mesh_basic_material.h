@@ -18,6 +18,7 @@ namespace GE{
         class MeshBasicMaterial : public Material_I {
         public:
             MeshBasicMaterial(float r, float g, float b, float a);
+            MeshBasicMaterial(std::string texture_path);
             ~MeshBasicMaterial();
 
             int Get_Program_ID() const;
@@ -30,6 +31,9 @@ namespace GE{
             const char *Vert_Shader_Source;
             const char *Frag_Shader_Source;
             int Program_ID;
+            
+            unsigned int texture;
+
             glm::vec4 Color;
         };
     } 

@@ -9,6 +9,7 @@
 #include <glm/vec4.hpp>
 #include <glm/mat4x4.hpp>
 #include <iostream>
+#include "stb_image.h"
 
 /**
  * Abstract main material class, inherit from this class for future materials
@@ -29,6 +30,7 @@ namespace Material {
         int Create_Shader_Program(const char *vert_src, const char *frag_src);
         int Compile_Shader(const char *shader_src, GLenum shaderType);
         int Link_Shaders(int vertexShader, int fragmentShader);
+        void Load_And_Bind_Texture(unsigned int& texture_id, std::string texture_path);
 
         void Set_Uniform_Bool(int Program_ID, const std::string &name, bool value) const;
         void Set_Uniform_Int(int Program_ID, const std::string &name, int value) const;

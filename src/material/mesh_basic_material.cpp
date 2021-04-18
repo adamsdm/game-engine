@@ -6,7 +6,7 @@ namespace GE{
 
     MeshBasicMaterial::MeshBasicMaterial(float r, float g, float b, float a) :
     		Color(r, g, b, a)
-	{
+	  {
 
     	std::string vStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.vert");
     	std::string fStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.frag");
@@ -18,8 +18,23 @@ namespace GE{
     	Program_ID = Material_I::Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
     }
 
+    MeshBasicMaterial::MeshBasicMaterial(std::string texture_path) {
+      Material_I::Load_And_Bind_Texture(texture, texture_path);
+
+
+    	std::string vStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_material.vert");
+    	std::string fStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_basic_texture_material.frag");
+
+    	// Convert string to char array
+    	Vert_Shader_Source = vStringSrc.c_str();
+    	Frag_Shader_Source = fStringSrc.c_str();
+
+    	Program_ID = Material_I::Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
+
+    }
+
     MeshBasicMaterial::~MeshBasicMaterial(){
-	}
+	  }
 
     int MeshBasicMaterial::Get_Program_ID() const {
       return Program_ID;
@@ -37,7 +52,8 @@ namespace GE{
     }
 
     void MeshBasicMaterial::Update_Uniforms() const {
+		glBindTexture(GL_TEXTURE_2D, texture);
     	Material_I::Set_Uniform_Vec4(Program_ID, "Color", Color);
-	}
+  	}
   } 
 }

@@ -1,3 +1,5 @@
+//TODO: Move to some root GE class
+#define STB_IMAGE_IMPLEMENTATION
 
 #include <stdio.h>
 #include <glm/glm.hpp>
@@ -20,12 +22,10 @@ int main(){
 
   GE::Geometry::PlaneGeometry geometry1(2.0f, 2.0f, 1, 1);
   GE::Material::MeshBasicMaterial material1(0.0f, 1.0f, 0.0f, 1.0f);
-
   GE::Mesh* Plane1 = new GE::Mesh(geometry1, material1);
 
   GE::Geometry::BoxGeometry geometry3(0.1f, 0.1f, 0.1f);
-  GE::Material::MeshPhongMaterial material3(0.0f, 0.0f, 1.0f, 1.0f);
-
+  GE::Material::MeshBasicMaterial material3("resources/textures/adam.jpg");
   GE::Mesh* Box = new GE::Mesh(geometry3, material3);
 
   scene.add(Plane1);
