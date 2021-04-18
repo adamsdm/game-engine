@@ -24,6 +24,7 @@ namespace Material {
 	class MeshPhongMaterial : public Material_I {
 	public:
 		MeshPhongMaterial(float r, float g, float b, float a);
+		MeshPhongMaterial(std::string texture_path);
 		~MeshPhongMaterial();
 
 		int Get_Program_ID() const;
@@ -36,6 +37,9 @@ namespace Material {
 		const char *Vert_Shader_Source;
 		const char *Frag_Shader_Source;
 		int Program_ID;
+
+		unsigned int texture;
+
 		glm::vec4 Color;
 	};
 }

@@ -24,6 +24,19 @@ namespace Material {
     	Program_ID = Material_I::Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
     }
 
+	MeshPhongMaterial::MeshPhongMaterial(std::string texture_path) {
+		Material_I::Load_And_Bind_Texture(texture, texture_path);
+
+		std::string vStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_phong_material.vert");
+    	std::string fStringSrc = ::GE::Utilities::Read_From_File("resources/shaders/mesh_phong_texture_material.frag");
+
+    	// Convert string to char array
+    	Vert_Shader_Source = vStringSrc.c_str();
+    	Frag_Shader_Source = fStringSrc.c_str();
+
+    	Program_ID = Material_I::Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
+	}
+
 	MeshPhongMaterial::~MeshPhongMaterial(){
 	}
 
@@ -43,6 +56,7 @@ namespace Material {
     }
 
     void MeshPhongMaterial::Update_Uniforms() const {
+		glBindTexture(GL_TEXTURE_2D, texture);
     	Material_I::Set_Uniform_Vec4(Program_ID, "Color", Color);
 	}
 
