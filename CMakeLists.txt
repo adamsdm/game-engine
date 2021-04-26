@@ -18,6 +18,7 @@ set(GLM_DIR     ${EXT_DIR}/glm)
 set(GLFW_DIR    ${EXT_DIR}/glfw)
 set(GLAD_DIR    ${EXT_DIR}/glad)
 set(STB_DIR     ${EXT_DIR}/stb)
+set(ASSIMP_DIR  ${EXT_DIR}/assimp)
 
 
 ### EXTERNALS
@@ -36,6 +37,10 @@ include_directories(${GLM_DIR})
 
 #stb
 include_directories(${STB_DIR})
+
+# assimp
+add_subdirectory(${ASSIMP_DIR})
+include_directories(${ASSIMP_DIR})
 
 ### GAME ENGINE LIBRARY
 
