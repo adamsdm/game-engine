@@ -79,6 +79,7 @@ namespace GE{
         Model_Matrix = glm::scale(Model_Matrix, Scale);
 
         m_material.Set_View_Matrix(cam.Get_View_Matrix());
+        m_material.Set_View_Pos(cam.Get_Position());
         m_material.Set_Projection_Matrix(cam.Get_Projection_Matrix());
         m_material.Set_Model_Matrix(Model_Matrix);
         m_material.Bind_Textures();

@@ -32,6 +32,7 @@ namespace Material {
 		void Update_Uniforms() const;
 		void Bind_Textures() const;
 		void Set_View_Matrix(glm::mat4 view_matrix);
+		void Set_View_Pos(glm::vec3 view_pos);
 		void Set_Projection_Matrix(glm::mat4 projection_matrix);
 		void Set_Model_Matrix(glm::mat4 model_matrix);
 

@@ -12,6 +12,8 @@ namespace GE{
             virtual ~Camera_I(){}
             virtual glm::mat4 Get_View_Matrix() const = 0;
             virtual glm::mat4 Get_Projection_Matrix() const = 0;
+            virtual glm::vec3 Get_Position() const = 0;
+
             virtual void Set_Position(glm::vec3 New_Position) = 0;
         };
     } 

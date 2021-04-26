@@ -44,6 +44,10 @@ namespace GE{
     	Material_I::Set_Uniform_Mat4(Program_ID, "View", view_matrix);
     }
 
+	void MeshBasicMaterial::Set_View_Pos(glm::vec3 view_pos) {
+		Material_I::Set_Uniform_Vec3(Program_ID, "ViewPos", view_pos);
+	}
+
     void MeshBasicMaterial::Set_Projection_Matrix(glm::mat4 projection_matrix){
     	Material_I::Set_Uniform_Mat4(Program_ID, "Projection", projection_matrix);
     }
