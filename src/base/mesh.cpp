@@ -81,6 +81,7 @@ namespace GE{
         m_material.Set_View_Matrix(cam.Get_View_Matrix());
         m_material.Set_Projection_Matrix(cam.Get_Projection_Matrix());
         m_material.Set_Model_Matrix(Model_Matrix);
+        m_material.Bind_Textures();
         m_material.Update_Uniforms();
 
         glBindVertexArray(VAO);

@@ -55,5 +55,10 @@ namespace GE{
 		glBindTexture(GL_TEXTURE_2D, texture);
     	Material_I::Set_Uniform_Vec4(Program_ID, "Color", Color);
   	}
+
+	void MeshBasicMaterial::Bind_Textures() const {
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+	}
   } 
 }

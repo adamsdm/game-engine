@@ -20,9 +20,10 @@ namespace Material {
     
     class Material_I{
     public:
+        virtual ~Material_I(){};
         virtual int Get_Program_ID() const = 0;
         virtual void Update_Uniforms() const = 0;
-        virtual ~Material_I(){};
+        virtual void Bind_Textures() const = 0;
         virtual void Set_View_Matrix(glm::mat4 view_matrix) = 0;
         virtual void Set_Projection_Matrix(glm::mat4 projection_matrix) = 0;
         virtual void Set_Model_Matrix(glm::mat4 model_matrix) = 0;

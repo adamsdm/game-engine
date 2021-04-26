@@ -10,7 +10,6 @@
 
 #include "utilities.h"
 #include <glad/glad.h>
-#include <material.h>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -18,6 +17,8 @@
 #include <glm/glm.hpp>
 #include <glm/vec4.hpp>
 #include <glm/mat4x4.hpp>
+
+#include "material.h"
 
 namespace GE{
 namespace Material {
@@ -29,6 +30,7 @@ namespace Material {
 
 		int Get_Program_ID() const;
 		void Update_Uniforms() const;
+		void Bind_Textures() const;
 		void Set_View_Matrix(glm::mat4 view_matrix);
 		void Set_Projection_Matrix(glm::mat4 projection_matrix);
 		void Set_Model_Matrix(glm::mat4 model_matrix);
