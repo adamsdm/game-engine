@@ -20,33 +20,40 @@ int main(){
   renderer.Set_Clear_Color(0.1f, 0.1f, 0.1f, 1.0f);
   renderer.Set_Size( appWindow.Get_Width(), appWindow.Get_Height());
 
-  GE::Geometry::PlaneGeometry geometry1(15.0f, 15.0f, 1, 1);
-  GE::Material::MeshPhongMaterial material1("resources/textures/grass.jpg");
-  GE::Mesh* Plane1 = new GE::Mesh(geometry1, material1);
-  Plane1->Set_Rotation(-3.14/2.0, 1.0f, 0.0f, 0.0f);
-  Plane1->Set_Position(0.0f, -2.0f, 0.0f);
+  GE::Geometry::BoxGeometry geometry(0.1f, 0.1f, 0.1f);
+  GE::Material::MeshPhongMaterial adam_material("resources/textures/adam.jpg");
+  GE::Material::MeshPhongMaterial container_material("resources/textures/container.jpg");
+  GE::Material::MeshPhongMaterial awesomeface_material("resources/textures/grass.jpg");
+
+  GE::Mesh* Box1 = new GE::Mesh(geometry, adam_material);
+  GE::Mesh* Box2 = new GE::Mesh(geometry, container_material);
+  GE::Mesh* Box3 = new GE::Mesh(geometry, awesomeface_material);
 
 
-  GE::Geometry::BoxGeometry geometry3(0.1f, 0.1f, 0.1f);
-  GE::Material::MeshPhongMaterial material3("resources/textures/adam.jpg");
-  GE::Mesh* Box = new GE::Mesh(geometry3, material3);
+  Box1->Set_Position(-1.5, 0.0, 0.0);
+  Box2->Set_Position( 0.0, 0.0, 0.0);
+  Box3->Set_Position( 1.5, 0.0, 0.0);
 
-  scene.add(Plane1);
-  scene.add(Box);
+  scene.add(Box1);
+  scene.add(Box2);
+  scene.add(Box3);
 
   float time = 0;
+  float rotation_speed = 0.2;
   // Game loop
   while(!appWindow.Should_Close()){
     time = glfwGetTime();
     
-    Box->Set_Position(2.0f * cos(time), 2.0f * sin(time), 0.0f);
-    Box->Set_Rotation(time*3.14, 0.0f, 1.0f, 0.0f);
+    Box1->Set_Rotation(rotation_speed * time*3.14, 0.0f, 1.0f, 0.0f);
+    Box2->Set_Rotation(rotation_speed * time*3.14, 0.0f, 1.0f, 0.0f);
+    Box3->Set_Rotation(rotation_speed * time*3.14, 0.0f, 1.0f, 0.0f);
 
     renderer.Render(scene, camera);
   }
 
-  delete Plane1;
-  delete Box;
+  delete Box1;
+  delete Box2;
+  delete Box3;
 
   return 0;
 }
