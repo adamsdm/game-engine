@@ -18,8 +18,6 @@ set(GLM_DIR     ${EXT_DIR}/glm)
 set(GLFW_DIR    ${EXT_DIR}/glfw)
 set(GLAD_DIR    ${EXT_DIR}/glad)
 set(STB_DIR     ${EXT_DIR}/stb)
-set(ASSIMP_DIR  ${EXT_DIR}/assimp)
-
 
 ### EXTERNALS
 # glfw
@@ -38,10 +36,6 @@ include_directories(${GLM_DIR})
 #stb
 include_directories(${STB_DIR})
 
-# assimp
-add_subdirectory(${ASSIMP_DIR})
-include_directories(${ASSIMP_DIR})
-
 ### GAME ENGINE LIBRARY
 
 
@@ -52,7 +46,8 @@ include_directories(${GE_SRC_DIR})
 set(GE_CORE_BASE_SOURCES    ${GE_SRC_DIR}/base/app_window.cpp
                             ${GE_SRC_DIR}/base/mesh.cpp
                             ${GE_SRC_DIR}/base/renderer.cpp
-                            ${GE_SRC_DIR}/base/scene.cpp)
+                            ${GE_SRC_DIR}/base/scene.cpp
+                            ${GE_SRC_DIR}/base/model.cpp)
 # Camera sources
 set(GE_CORE_CAMERA_SOURCES  ${GE_SRC_DIR}/camera/camera.cpp    
 							${GE_SRC_DIR}/camera/perspective_camera.cpp)
