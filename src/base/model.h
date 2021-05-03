@@ -1,0 +1,41 @@
+#define STB_IMAGE_IMPLEMENTATION
+
+#ifndef GE_MODEL_H
+#define GE_MODEL_H
+
+#include <string>
+#include <iostream>
+#include <glm/glm.hpp>
+
+#include "ge_types.h"
+#include "camera.h"
+#include "mesh.h"
+
+namespace GE{
+
+class Model{
+public:
+    Model(std::string path_to_model);
+    ~Model();
+
+    void Set_Position(float x, float y, float z);
+    void Set_Rotation(float angle, float x, float y, float z);
+
+    glm::vec3 Get_Position() const;
+    glm::vec4 Get_Rotation() const;
+
+    void Render(Camera::Camera_I &cam) const;
+
+private:
+    glm::vec3 Position;
+    glm::vec4 Rotation;
+    glm::vec3 Scale;
+    std::vector<Mesh>     Meshes;
+    std::vector<Texture>  Textures;
+
+    void Load_Model(std::string path);
+};
+
+};
+
+#endif /* GE_MODEL_H */

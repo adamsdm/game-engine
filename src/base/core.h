@@ -12,4 +12,5 @@
 #include "mesh_phong_material.h"
 #include "mesh.h"
 #include "ge_types.h"
+#include "model.h"
 #endif

@@ -13,6 +13,10 @@ namespace GE {
         Meshes.push_back(mesh);
     }
 
+    void Scene::add(Model* model) {
+        Models.push_back(model);
+    }
+
 }
 
 

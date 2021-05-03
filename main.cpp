@@ -29,14 +29,16 @@ int main(){
   GE::Mesh* Box2 = new GE::Mesh(geometry, container_material);
   GE::Mesh* Box3 = new GE::Mesh(geometry, awesomeface_material);
 
-
   Box1->Set_Position(-1.5, 0.0, 0.0);
   Box2->Set_Position( 0.0, 0.0, 0.0);
   Box3->Set_Position( 1.5, 0.0, 0.0);
 
+  GE::Model* Model = new GE::Model("resources/objects/backpack/backpack.obj");
+
   scene.add(Box1);
   scene.add(Box2);
   scene.add(Box3);
+  scene.add(Model);
 
   float time = 0;
   float rotation_speed = 0.2;
@@ -54,6 +56,7 @@ int main(){
   delete Box1;
   delete Box2;
   delete Box3;
+  delete Model;
 
   return 0;
 }
