@@ -43,8 +43,6 @@ add_subdirectory(${ASSIMP_DIR})
 include_directories(${ASSIMP_DIR})
 
 ### GAME ENGINE LIBRARY
-
-
 set(GE_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 include_directories(${GE_SRC_DIR})
 
