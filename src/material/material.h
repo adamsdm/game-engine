@@ -2,6 +2,7 @@
 #ifndef GE_MATERIAL_H
 #define GE_MATERIAL_H
 
+// TODO Are all of these really used
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/mat4x4.hpp>
@@ -10,13 +11,10 @@
 #include <iostream>
 #include <string>
 
-/**
- * Abstract main material class, inherit from this class for future materials
- */
-
 namespace GE {
 namespace Material {
 
+// TODO This isn't an interface, more like an abstract class
 class Material_I {
  public:
   virtual ~Material_I(){};
@@ -28,6 +26,7 @@ class Material_I {
   virtual void Set_Projection_Matrix(glm::mat4 projection_matrix) = 0;
   virtual void Set_Model_Matrix(glm::mat4 model_matrix) = 0;
 
+// TODO Move to util lib? Or free functions
  protected:
   int Create_Shader_Program(const char* vert_src, const char* frag_src);
   int Compile_Shader(const char* shader_src, GLenum shaderType);

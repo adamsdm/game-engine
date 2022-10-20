@@ -1,5 +1,3 @@
-
-
 #ifndef GE_CAMERA_H
 #define GE_CAMERA_H
 
@@ -31,6 +29,7 @@ class PerspectiveCamera : public Camera_I {
   float m_near;
   float m_far;
 
+  // TODO These are m_ variables
   glm::vec3 cam_Pos;
   glm::vec3 cam_Front;
   glm::vec3 cam_Up;
@@ -42,4 +41,4 @@ class PerspectiveCamera : public Camera_I {
 }  // namespace Camera
 }  // namespace GE
 
-#endif /* RENDERER */
+#endif /* GE_CAMERA_H */

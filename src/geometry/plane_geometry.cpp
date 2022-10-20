@@ -21,6 +21,7 @@ PlaneGeometry::PlaneGeometry(float width, float height,
   float half_w = m_width / 2.0f;
   float half_h = m_height / 2.0f;
 
+  // TODO Rename to follow convention
   float segmentWidth =
       static_cast<float>(m_width) / static_cast<float>(m_width_segments);
   float segmentHeight =
@@ -49,6 +50,7 @@ PlaneGeometry::PlaneGeometry(float width, float height,
   // Setup indices
   for (int i = 0; i < m_heigth_segments; i++) {
     for (int j = 0; j < m_width_segments; j++) {
+      // TODO This could use an explanatory comment
       unsigned int a = j + (m_width_segments + 1) * i;
       unsigned int b = j + (m_width_segments + 1) * (i + 1);
       unsigned int c = (j + 1) + (m_width_segments + 1) * (i + 1);

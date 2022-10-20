@@ -7,9 +7,11 @@
 
 namespace GE {
 namespace Camera {
+
+// TODO Rename interface
 class Camera_I {
  public:
-  virtual ~Camera_I() {}
+  virtual ~Camera_I() = default;
   virtual glm::mat4 Get_View_Matrix() const = 0;
   virtual glm::mat4 Get_Projection_Matrix() const = 0;
   virtual glm::vec3 Get_Position() const = 0;

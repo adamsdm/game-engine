@@ -28,6 +28,7 @@ class Mesh {
   void Render(Camera::Camera_I& cam) const;
 
  private:
+  // TODO Rename to follow convention m_variable name
   glm::vec3 Position;
   glm::vec4 Rotation;
   glm::vec3 Scale;

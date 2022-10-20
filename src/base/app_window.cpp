@@ -11,6 +11,7 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
     exit(EXIT_FAILURE);
   }
 
+  // TODO Split this into helper functions
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -27,6 +28,7 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
     exit(EXIT_FAILURE);
   }
   glfwSetKeyCallback(m_window, key_callback);
+  glfwSetErrorCallback(error_callback);
   glfwMakeContextCurrent(m_window);
   gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
   glfwSwapInterval(1);
@@ -37,14 +39,15 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
 
 AppWindow::~AppWindow() = default;
 
+// TODO This should return a shared_ptr instead
 GLFWwindow* AppWindow::Get_Ref() {
   return m_window;
 }
 
-const unsigned int AppWindow::Get_Width() const {
+unsigned int AppWindow::Get_Width() const {
   return m_width;
 }
-const unsigned int AppWindow::Get_Height() const {
+unsigned int AppWindow::Get_Height() const {
   return m_height;
 }
 
@@ -52,12 +55,15 @@ bool AppWindow::Should_Close() {
   return glfwWindowShouldClose(m_window) != 0;
 }
 
+// TODO Rename, this does not follow naming convention
 void AppWindow::error_callback(int error, const char* description) {
   fprintf(stderr, "Error: %s\n", description);
 }
 
+// TODO Rename, this does not follow naming convention
 void AppWindow::key_callback(GLFWwindow* window, int key, int scancode,
                              int action, int mods) {
+  // TODO This should be dispatched to a KeyHandler
   if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     glfwSetWindowShouldClose(window, GLFW_TRUE);
   if (key == GLFW_KEY_E && action == GLFW_PRESS) {

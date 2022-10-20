@@ -11,16 +11,17 @@
 
 namespace GE {
 class AppWindow {
- public:
+public:
   AppWindow(const unsigned int Width, const unsigned int Height);
   ~AppWindow();
 
   bool Should_Close();
-  GLFWwindow* Get_Ref();
-  const unsigned int Get_Width() const;
-  const unsigned int Get_Height() const;
+  GLFWwindow* Get_Ref(); // TODO Rename
+  unsigned int Get_Width() const;
+  unsigned int Get_Height() const;
 
  private:
+ // TODO This should not be a raw ptr
   GLFWwindow* m_window;
   unsigned int m_width;
   unsigned int m_height;

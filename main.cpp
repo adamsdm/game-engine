@@ -9,7 +9,7 @@
 #include "base/core.h"
 
 int main() {
-
+  // TODO Refactor into an app class
   GE::AppWindow app_window(800, 600);
   GE::Scene scene;
   GE::Renderer renderer(app_window);
@@ -28,6 +28,8 @@ int main() {
   GE::Material::MeshPhongMaterial awesomeface_material(
       "resources/textures/grass.jpg");
 
+  // TODO Raw ptrs
+  // TODO Rename aswell
   auto* box1 = new GE::Mesh(geometry, adam_material);
   auto* box2 = new GE::Mesh(geometry, container_material);
   auto* box3 = new GE::Mesh(geometry, awesomeface_material);

@@ -24,6 +24,7 @@ class Renderer {
   void Render(Scene sc, Camera::Camera_I& cam);
 
  private:
+  // TODO Raw ptr..
   GLFWwindow* m_window;
   glm::vec4 m_clear_color;
   unsigned int m_width;

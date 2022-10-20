@@ -1,3 +1,4 @@
+// TODO Rename and move one up
 
 #ifndef CORE_ENGINE_H
 #define CORE_ENGINE_H
@@ -13,4 +14,5 @@
 #include "plane_geometry.h"
 #include "renderer.h"
 #include "scene.h"
+
 #endif

@@ -1,21 +1,16 @@
-/*
- * utilities.cpp
- *
- *  Created on: 29 Dec 2018
- *      Author: adamsoderstrom
- */
-
 #include "utilities.h"
 
 namespace GE {
 namespace Utilities {
 
+// TODO Rename this file
 std::string Read_From_File(const char* path) {
   std::string code;
   std::ifstream file;
 
   file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
+  // TODO Refactor try catch
   try {
     // open files
     file.open(path);

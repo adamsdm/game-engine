@@ -1,10 +1,3 @@
-/*
- * ge_types.h
- *
- *  Created on: 14 Apr 2021
- *      Author: adamsoderstrom
- */
-
 #ifndef SRC_UTILITIES_GE_TYPES_H_
 #define SRC_UTILITIES_GE_TYPES_H_
 

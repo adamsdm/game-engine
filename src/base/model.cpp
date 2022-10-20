@@ -30,9 +30,11 @@ glm::vec4 Model::Get_Rotation() const {
 }
 
 void Model::Render(Camera::Camera_I& cam) const {
-  // Render each mesh
+  // TODO Render each mesh
 }
 
-void Model::Load_Model(std::string path) {}
+void Model::Load_Model(std::string path) {
+  // TODO Implement me
+}
 
 };  // namespace GE

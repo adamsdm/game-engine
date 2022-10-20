@@ -15,6 +15,7 @@ namespace Geometry {
 
 class BoxGeometry : public Geometry_I {
  public:
+  // TODO Set default values of these
   BoxGeometry(float width, float height, float depth);
   virtual ~BoxGeometry();
 
@@ -22,9 +23,11 @@ class BoxGeometry : public Geometry_I {
   std::vector<unsigned int> Get_Indices() const override;
 
  private:
+  // TODO Rename to follow convention
   std::vector<Vertex> Vertices;
   std::vector<unsigned int> Indices;
 
+  // TODO These are currently unused
   float m_width;
   float m_height;
   float m_depth;

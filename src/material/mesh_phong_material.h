@@ -28,6 +28,7 @@ class MeshPhongMaterial : public Material_I {
   MeshPhongMaterial(std::string texture_path);
   ~MeshPhongMaterial();
 
+  // TODO These are common for all materials, move to base class?
   int Get_Program_ID() const;
   void Update_Uniforms() const;
   void Bind_Textures() const;

@@ -31,6 +31,7 @@ glm::vec3 PerspectiveCamera::Get_Position() const {
   return cam_Pos;
 }
 
+// TODO pass as const ref and rename
 void PerspectiveCamera::Set_Position(glm::vec3 New_Position) {
   cam_Pos.x = New_Position.x;
   cam_Pos.y = New_Position.y;
@@ -42,7 +43,7 @@ void PerspectiveCamera::Set_Position(glm::vec3 New_Position) {
 
 void PerspectiveCamera::Calculate_View_Matrix() {
   cam_View_Matrix = glm::lookAt(cam_Pos, cam_Pos + cam_Front,
-                                cam_Up);  //TODO: Move to function
+                                cam_Up);
 }
 
 void PerspectiveCamera::Calculate_Projection_Matrix() {

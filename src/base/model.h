@@ -13,6 +13,7 @@
 
 namespace GE {
 
+// TODO This class has a lot in common with mesh.h, should they implement the same interface?
 class Model {
  public:
   Model(std::string path_to_model);
@@ -27,6 +28,7 @@ class Model {
   void Render(Camera::Camera_I& cam) const;
 
  private:
+ // TODO Rename to follow convention m_variable_name
   glm::vec3 Position;
   glm::vec4 Rotation;
   glm::vec3 Scale;

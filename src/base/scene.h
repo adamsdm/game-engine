@@ -1,5 +1,3 @@
-
-
 #ifndef GE_SCENE_H
 #define GE_SCENE_H
 
@@ -15,12 +13,14 @@ class Scene {
   Scene();
   ~Scene();
 
+  // TODO Raw ptrs....
   void add(Mesh* mesh);
   void add(Model* model);
   std::vector<Mesh*> const& Get_Meshes() const { return Meshes; }
   std::vector<Model*> const& Get_Models() const { return Models; }
 
  private:
+  // TODO Naming convention
   std::vector<Mesh*> Meshes;
   std::vector<Model*> Models;
 };

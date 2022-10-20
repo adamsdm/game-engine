@@ -1,5 +1,3 @@
-
-
 #include "mesh.h"
 
 #include <iostream>
@@ -15,15 +13,19 @@ Mesh::Mesh(const Geometry::Geometry_I& geometry, Material::Material_I& material)
       Position(0.0f),
       Rotation(0.0f, 1.0f, 0.0f, 0.0f),
       Scale(1.0f) {
+  
+  // TODO Move to initializer list
   Vertices = m_geometry.Get_Vertices();
   Indices = m_geometry.Get_Indices();
 
+  // TODO move to helper functions
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glGenBuffers(1, &EBO);
   // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
   glBindVertexArray(VAO);
 
+  // TODO A lot of C style casts here
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(Vertex), &Vertices[0],
                GL_STATIC_DRAW);
@@ -72,19 +74,20 @@ glm::vec4 Mesh::Get_Rotation() const {
   return Rotation;
 }
 
+// TODO Split into helper functions to increase readability
 void Mesh::Render(Camera::Camera_I& cam) const {
   glUseProgram(m_material.Get_Program_ID());
 
-  glm::mat4 Model_Matrix(1.0f);
-  Model_Matrix = glm::translate(Model_Matrix, Position);
-  Model_Matrix = glm::rotate(Model_Matrix, Rotation.w,
+  glm::mat4 model_matrix(1.0f);
+  model_matrix = glm::translate(model_matrix, Position);
+  model_matrix = glm::rotate(model_matrix, Rotation.w,
                              glm::vec3(Rotation.x, Rotation.y, Rotation.z));
-  Model_Matrix = glm::scale(Model_Matrix, Scale);
+  model_matrix = glm::scale(model_matrix, Scale);
 
   m_material.Set_View_Matrix(cam.Get_View_Matrix());
   m_material.Set_View_Pos(cam.Get_Position());
   m_material.Set_Projection_Matrix(cam.Get_Projection_Matrix());
-  m_material.Set_Model_Matrix(Model_Matrix);
+  m_material.Set_Model_Matrix(model_matrix);
   m_material.Bind_Textures();
   m_material.Update_Uniforms();
 

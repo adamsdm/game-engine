@@ -22,6 +22,7 @@ class MeshBasicMaterial : public Material_I {
   MeshBasicMaterial(std::string texture_path);
   ~MeshBasicMaterial();
 
+  // TODO These are common for all materials, move too base class?
   int Get_Program_ID() const;
   void Update_Uniforms() const;
   void Bind_Textures() const;
@@ -31,6 +32,8 @@ class MeshBasicMaterial : public Material_I {
   void Set_Model_Matrix(glm::mat4 model_matrix);
 
  private:
+ // TODO Raw ptrs
+ // TODO Rename
   const char* Vert_Shader_Source;
   const char* Frag_Shader_Source;
   int Program_ID;
