@@ -7,6 +7,10 @@
 
 #include "material.h"
 
+// stb_image.h HAS to be included in a cpp file, or you will get a compilation error
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 namespace GE {
 namespace Material {
 

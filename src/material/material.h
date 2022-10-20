@@ -9,7 +9,6 @@
 #include <glm/vec4.hpp>
 #include <iostream>
 #include <string>
-#include "stb_image.h"
 
 /**
  * Abstract main material class, inherit from this class for future materials
