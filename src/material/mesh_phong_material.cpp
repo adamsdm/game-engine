@@ -42,7 +42,7 @@ MeshPhongMaterial::MeshPhongMaterial(std::string texture_path) {
       Material_I::Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
 }
 
-MeshPhongMaterial::~MeshPhongMaterial() {}
+MeshPhongMaterial::~MeshPhongMaterial() = default;
 
 int MeshPhongMaterial::Get_Program_ID() const {
   return Program_ID;

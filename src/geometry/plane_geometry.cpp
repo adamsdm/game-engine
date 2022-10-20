@@ -65,7 +65,7 @@ PlaneGeometry::PlaneGeometry(float width, float height,
   }
 }
 
-PlaneGeometry::~PlaneGeometry() {}
+PlaneGeometry::~PlaneGeometry() = default;
 
 std::vector<Vertex> PlaneGeometry::Get_Vertices() const {
   return Vertices;

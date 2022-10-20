@@ -17,7 +17,7 @@ PerspectiveCamera::PerspectiveCamera(float fov, float aspect, float near,
   Calculate_View_Matrix();
 }
 
-PerspectiveCamera::~PerspectiveCamera() {}
+PerspectiveCamera::~PerspectiveCamera() = default;
 
 glm::mat4 PerspectiveCamera::Get_Projection_Matrix() const {
   return cam_Projection_Matrix;

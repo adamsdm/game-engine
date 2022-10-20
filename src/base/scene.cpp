@@ -3,9 +3,9 @@
 
 namespace GE {
 
-Scene::Scene() {}
+Scene::Scene() = default;
 
-Scene::~Scene() {}
+Scene::~Scene() = default;
 
 void Scene::add(Mesh* mesh) {
   Meshes.push_back(mesh);

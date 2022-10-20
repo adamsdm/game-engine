@@ -36,7 +36,7 @@ MeshBasicMaterial::MeshBasicMaterial(std::string texture_path) {
       Material_I::Create_Shader_Program(Vert_Shader_Source, Frag_Shader_Source);
 }
 
-MeshBasicMaterial::~MeshBasicMaterial() {}
+MeshBasicMaterial::~MeshBasicMaterial() = default;
 
 int MeshBasicMaterial::Get_Program_ID() const {
   return Program_ID;

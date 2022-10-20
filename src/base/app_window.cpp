@@ -20,7 +20,7 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
       GL_TRUE);  // uncomment this statement to fix compilation on OS X
 #endif
 
-  m_window = glfwCreateWindow(Width, Height, "Simple example", NULL, NULL);
+  m_window = glfwCreateWindow(Width, Height, "Simple example", nullptr, nullptr);
   if (!m_window) {
     glfwTerminate();
     std::cerr << "ERROR:: Failed to create GLFW window" << std::endl;
@@ -35,7 +35,7 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
   glEnable(GL_DEPTH_TEST);
 }
 
-AppWindow::~AppWindow() {}
+AppWindow::~AppWindow() = default;
 
 GLFWwindow* AppWindow::Get_Ref() {
   return m_window;
@@ -49,7 +49,7 @@ const unsigned int AppWindow::Get_Height() const {
 }
 
 bool AppWindow::Should_Close() {
-  return glfwWindowShouldClose(m_window);
+  return glfwWindowShouldClose(m_window) != 0;
 }
 
 void AppWindow::error_callback(int error, const char* description) {

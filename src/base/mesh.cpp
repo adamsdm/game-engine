@@ -50,7 +50,7 @@ Mesh::Mesh(const Geometry::Geometry_I& geometry, Material::Material_I& material)
   glBindVertexArray(0);
 }
 
-Mesh::~Mesh() {}
+Mesh::~Mesh() = default;
 
 void Mesh::Set_Position(float x, float y, float z) {
   Position.x = x;

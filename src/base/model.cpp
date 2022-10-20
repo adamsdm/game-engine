@@ -7,7 +7,7 @@ Model::Model(std::string path_to_model)
   Load_Model(path_to_model);
 }
 
-Model::~Model() {}
+Model::~Model() = default;
 
 void Model::Set_Position(float x, float y, float z) {
   Position.x = x;
