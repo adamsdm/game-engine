@@ -5,11 +5,6 @@
  *      Author: adamsoderstrom
  */
 
-namespace GE{
-    namespace Geometry {
-
-    }
-}
-
-
-
+namespace GE {
+namespace Geometry {}
+}  // namespace GE

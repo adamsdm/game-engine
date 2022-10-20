@@ -3,39 +3,39 @@
 #ifndef GE_MODEL_H
 #define GE_MODEL_H
 
-#include <string>
-#include <iostream>
 #include <glm/glm.hpp>
+#include <iostream>
+#include <string>
 
-#include "ge_types.h"
 #include "camera.h"
+#include "ge_types.h"
 #include "mesh.h"
 
-namespace GE{
+namespace GE {
 
-class Model{
-public:
-    Model(std::string path_to_model);
-    ~Model();
+class Model {
+ public:
+  Model(std::string path_to_model);
+  ~Model();
 
-    void Set_Position(float x, float y, float z);
-    void Set_Rotation(float angle, float x, float y, float z);
+  void Set_Position(float x, float y, float z);
+  void Set_Rotation(float angle, float x, float y, float z);
 
-    glm::vec3 Get_Position() const;
-    glm::vec4 Get_Rotation() const;
+  glm::vec3 Get_Position() const;
+  glm::vec4 Get_Rotation() const;
 
-    void Render(Camera::Camera_I &cam) const;
+  void Render(Camera::Camera_I& cam) const;
 
-private:
-    glm::vec3 Position;
-    glm::vec4 Rotation;
-    glm::vec3 Scale;
-    std::vector<Mesh>     Meshes;
-    std::vector<Texture>  Textures;
+ private:
+  glm::vec3 Position;
+  glm::vec4 Rotation;
+  glm::vec3 Scale;
+  std::vector<Mesh> Meshes;
+  std::vector<Texture> Textures;
 
-    void Load_Model(std::string path);
+  void Load_Model(std::string path);
 };
 
-};
+};  // namespace GE
 
 #endif /* GE_MODEL_H */

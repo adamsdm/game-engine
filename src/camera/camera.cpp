@@ -7,12 +7,6 @@
 
 #include "camera.h"
 
-namespace GE{
-    namespace Camera {
-
-    }
-}
-
-
-
-
+namespace GE {
+namespace Camera {}
+}  // namespace GE

@@ -8,20 +8,20 @@
 #ifndef SRC_UTILITIES_GE_TYPES_H_
 #define SRC_UTILITIES_GE_TYPES_H_
 
-#include <string>
 #include <glm/glm.hpp>
+#include <string>
 
 namespace GE {
-    struct Vertex {
-        glm::vec3 Position;
-        glm::vec3 Normal;
-        glm::vec2 TexCoords;
-    };
+struct Vertex {
+  glm::vec3 Position;
+  glm::vec3 Normal;
+  glm::vec2 TexCoords;
+};
 
-    struct Texture {
-        unsigned int id;
-        std::string type;
-    };  
-}
+struct Texture {
+  unsigned int id;
+  std::string type;
+};
+}  // namespace GE
 
-#endif //SRC_UTILITIES_GE_TYPES_H_
+#endif  //SRC_UTILITIES_GE_TYPES_H_
