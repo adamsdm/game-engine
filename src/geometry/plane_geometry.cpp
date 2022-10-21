@@ -18,8 +18,8 @@ PlaneGeometry::PlaneGeometry(float width, float height,
       m_height(height),
       m_heigth_segments(heigth_segments),
       m_width_segments(width_segments) {
-  float half_w = m_width / 2.0f;
-  float half_h = m_height / 2.0f;
+  float halfW = m_width / 2.0f;
+  float halfH = m_height / 2.0f;
 
   // TODO Rename to follow convention
   float segmentWidth =
@@ -29,9 +29,9 @@ PlaneGeometry::PlaneGeometry(float width, float height,
 
   // Setup vertices
   for (int i = 0; i < m_heigth_segments + 1; i++) {
-    float y = segmentHeight * i - half_h;
+    float y = segmentHeight * i - halfH;
     for (int j = 0; j < m_width_segments + 1; j++) {
-      float x = j * segmentWidth - half_w;
+      float x = j * segmentWidth - halfW;
 
       Vertex v;
       v.Position.x = x;

@@ -78,16 +78,16 @@ glm::vec4 Mesh::Get_Rotation() const {
 void Mesh::Render(Camera::Camera_I& cam) const {
   glUseProgram(m_material.Get_Program_ID());
 
-  glm::mat4 model_matrix(1.0f);
-  model_matrix = glm::translate(model_matrix, Position);
-  model_matrix = glm::rotate(model_matrix, Rotation.w,
+  glm::mat4 modelMatrix(1.0f);
+  modelMatrix = glm::translate(modelMatrix, Position);
+  modelMatrix = glm::rotate(modelMatrix, Rotation.w,
                              glm::vec3(Rotation.x, Rotation.y, Rotation.z));
-  model_matrix = glm::scale(model_matrix, Scale);
+  modelMatrix = glm::scale(modelMatrix, Scale);
 
   m_material.Set_View_Matrix(cam.Get_View_Matrix());
   m_material.Set_View_Pos(cam.Get_Position());
   m_material.Set_Projection_Matrix(cam.Get_Projection_Matrix());
-  m_material.Set_Model_Matrix(model_matrix);
+  m_material.Set_Model_Matrix(modelMatrix);
   m_material.Bind_Textures();
   m_material.Update_Uniforms();
 

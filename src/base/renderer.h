@@ -1,5 +1,3 @@
-
-
 #ifndef GE_RENDERER_H
 #define GE_RENDERER_H
 

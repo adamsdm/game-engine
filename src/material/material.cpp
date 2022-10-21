@@ -23,21 +23,21 @@ int Material_I::Create_Shader_Program(const char* vert_src,
 }
 
 int Material_I::Compile_Shader(const char* shader_src, GLenum shaderType) {
-  int Shader = glCreateShader(shaderType);
-  glShaderSource(Shader, 1, &shader_src, 0);
-  glCompileShader(Shader);
+  int shader = glCreateShader(shaderType);
+  glShaderSource(shader, 1, &shader_src, 0);
+  glCompileShader(shader);
 
   // check for shader compile errors
   int success;
   char infoLog[512];
-  glGetShaderiv(Shader, GL_COMPILE_STATUS, &success);
+  glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
   if (!success) {
-    glGetShaderInfoLog(Shader, 512, 0, infoLog);
+    glGetShaderInfoLog(shader, 512, 0, infoLog);
     std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n"
               << infoLog << std::endl;
   }
 
-  return Shader;
+  return shader;
 }
 int Material_I::Link_Shaders(int vertexShader, int fragmentShader) {
   int shaderProgram = glCreateProgram();

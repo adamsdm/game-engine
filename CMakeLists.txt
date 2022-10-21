@@ -53,8 +53,7 @@ set(GE_CORE_CAMERA_SOURCES  ${GE_SRC_DIR}/camera/camera.cpp
 							${GE_SRC_DIR}/camera/perspective_camera.cpp)
 
 # Geometry sources
-set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/geometry.cpp
-								${GE_SRC_DIR}/geometry/plane_geometry.cpp
+set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/plane_geometry.cpp
 								${GE_SRC_DIR}/geometry/box_geometry.cpp)
 
 # Material sources
