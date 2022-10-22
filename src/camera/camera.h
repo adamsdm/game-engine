@@ -9,14 +9,14 @@ namespace GE {
 namespace Camera {
 
 // TODO Rename interface
-class Camera_I {
+class CameraI {
  public:
-  virtual ~Camera_I() = default;
-  virtual glm::mat4 Get_View_Matrix() const = 0;
-  virtual glm::mat4 Get_Projection_Matrix() const = 0;
-  virtual glm::vec3 Get_Position() const = 0;
+  virtual ~CameraI() = default;
+  virtual glm::mat4 getViewMatrix() const = 0;
+  virtual glm::mat4 getProjectionMatrix() const = 0;
+  virtual glm::vec3 getPosition() const = 0;
 
-  virtual void Set_Position(glm::vec3 New_Position) = 0;
+  virtual void setPosition(glm::vec3 New_Position) = 0;
 };
 }  // namespace Camera
 }  // namespace GE

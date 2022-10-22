@@ -27,8 +27,8 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
     std::cerr << "ERROR:: Failed to create GLFW window" << std::endl;
     exit(EXIT_FAILURE);
   }
-  glfwSetKeyCallback(m_window, key_callback);
-  glfwSetErrorCallback(error_callback);
+  glfwSetKeyCallback(m_window, KeyCallback);
+  glfwSetErrorCallback(ErrorCallback);
   glfwMakeContextCurrent(m_window);
   gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
   glfwSwapInterval(1);
@@ -40,29 +40,27 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
 AppWindow::~AppWindow() = default;
 
 // TODO This should return a shared_ptr instead
-GLFWwindow* AppWindow::Get_Ref() {
+GLFWwindow* AppWindow::get() {
   return m_window;
 }
 
-unsigned int AppWindow::Get_Width() const {
+unsigned int AppWindow::getWidth() const {
   return m_width;
 }
-unsigned int AppWindow::Get_Height() const {
+unsigned int AppWindow::getHeight() const {
   return m_height;
 }
 
-bool AppWindow::Should_Close() {
+bool AppWindow::shouldClose() {
   return glfwWindowShouldClose(m_window) != 0;
 }
 
-// TODO Rename, this does not follow naming convention
-void AppWindow::error_callback(int error, const char* description) {
+void AppWindow::ErrorCallback(int error, const char* description) {
   fprintf(stderr, "Error: %s\n", description);
 }
 
-// TODO Rename, this does not follow naming convention
-void AppWindow::key_callback(GLFWwindow* window, int key, int scancode,
-                             int action, int mods) {
+void AppWindow::KeyCallback(GLFWwindow* window, int key, int scancode,
+                            int action, int mods) {
   // TODO This should be dispatched to a KeyHandler
   if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     glfwSetWindowShouldClose(window, GLFW_TRUE);

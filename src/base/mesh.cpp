@@ -1,38 +1,36 @@
 #include "mesh.h"
 
 #include <iostream>
-
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 namespace GE {
 
-Mesh::Mesh(const Geometry::Geometry_I& geometry, Material::Material_I& material)
+Mesh::Mesh(const Geometry::GeometryI& geometry, Material::MaterialI& material)
     : m_geometry(geometry),
       m_material(material),
-      Position(0.0f),
-      Rotation(0.0f, 1.0f, 0.0f, 0.0f),
-      Scale(1.0f) {
-  
-  // TODO Move to initializer list
-  Vertices = m_geometry.Get_Vertices();
-  Indices = m_geometry.Get_Indices();
+      m_position(0.0f),
+      m_rotation(0.0f, 1.0f, 0.0f, 0.0f),
+      m_scale(1.0f) {
+
+  m_vertices = m_geometry.getVertices();
+  m_indices = m_geometry.getIndices(); 
 
   // TODO move to helper functions
-  glGenVertexArrays(1, &VAO);
-  glGenBuffers(1, &VBO);
-  glGenBuffers(1, &EBO);
+  glGenVertexArrays(1, &m_VAO);
+  glGenBuffers(1, &m_VBO);
+  glGenBuffers(1, &m_EBO);
   // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-  glBindVertexArray(VAO);
+  glBindVertexArray(m_VAO);
 
   // TODO A lot of C style casts here
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(Vertex), &Vertices[0],
+  glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+  glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), &m_vertices[0],
                GL_STATIC_DRAW);
 
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(unsigned int),
-               &Indices[0], GL_STATIC_DRAW);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int),
+               &m_indices[0], GL_STATIC_DRAW);
 
   // Position attribute
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
@@ -54,45 +52,46 @@ Mesh::Mesh(const Geometry::Geometry_I& geometry, Material::Material_I& material)
 
 Mesh::~Mesh() = default;
 
-void Mesh::Set_Position(float x, float y, float z) {
-  Position.x = x;
-  Position.y = y;
-  Position.z = z;
+void Mesh::setPosition(float x, float y, float z) {
+  m_position.x = x;
+  m_position.y = y;
+  m_position.z = z;
 }
-void Mesh::Set_Rotation(float angle, float x, float y, float z) {
-  Rotation.x = x;
-  Rotation.y = y;
-  Rotation.z = z;
-  Rotation.w = angle;
-}
-
-glm::vec3 Mesh::Get_Position() const {
-  return Position;
+void Mesh::setRotation(float angle, float x, float y, float z) {
+  m_rotation.x = x;
+  m_rotation.y = y;
+  m_rotation.z = z;
+  m_rotation.w = angle;
 }
 
-glm::vec4 Mesh::Get_Rotation() const {
-  return Rotation;
+glm::vec3 Mesh::getPosition() const {
+  return m_position;
+}
+
+glm::vec4 Mesh::getRotation() const {
+  return m_rotation;
 }
 
 // TODO Split into helper functions to increase readability
-void Mesh::Render(Camera::Camera_I& cam) const {
-  glUseProgram(m_material.Get_Program_ID());
+void Mesh::render(Camera::CameraI& cam) const {
+  glUseProgram(m_material.getProgramId());
 
   glm::mat4 modelMatrix(1.0f);
-  modelMatrix = glm::translate(modelMatrix, Position);
-  modelMatrix = glm::rotate(modelMatrix, Rotation.w,
-                             glm::vec3(Rotation.x, Rotation.y, Rotation.z));
-  modelMatrix = glm::scale(modelMatrix, Scale);
+  modelMatrix = glm::translate(modelMatrix, m_position);
+  modelMatrix = glm::rotate(modelMatrix, m_rotation.w,
+                            glm::vec3(m_rotation.x, m_rotation.y, m_rotation.z));
+  modelMatrix = glm::scale(modelMatrix, m_scale);
 
-  m_material.Set_View_Matrix(cam.Get_View_Matrix());
-  m_material.Set_View_Pos(cam.Get_Position());
-  m_material.Set_Projection_Matrix(cam.Get_Projection_Matrix());
-  m_material.Set_Model_Matrix(modelMatrix);
-  m_material.Bind_Textures();
-  m_material.Update_Uniforms();
+  // TODO This class shouldn't care about this
+  m_material.setViewMatrix(cam.getViewMatrix());
+  m_material.setViewPos(cam.getPosition());
+  m_material.setProjectionMatrix(cam.getProjectionMatrix());
+  m_material.setModelMatrix(modelMatrix);
+  m_material.bindTextures();
+  m_material.updateUniforms();
 
-  glBindVertexArray(VAO);
-  glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
+  glBindVertexArray(m_VAO);
+  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
 }
 
 };  // namespace GE

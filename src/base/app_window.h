@@ -15,10 +15,10 @@ public:
   AppWindow(const unsigned int Width, const unsigned int Height);
   ~AppWindow();
 
-  bool Should_Close();
-  GLFWwindow* Get_Ref(); // TODO Rename
-  unsigned int Get_Width() const;
-  unsigned int Get_Height() const;
+  bool shouldClose();
+  GLFWwindow* get(); 
+  unsigned int getWidth() const;
+  unsigned int getHeight() const;
 
  private:
  // TODO This should not be a raw ptr
@@ -26,9 +26,9 @@ public:
   unsigned int m_width;
   unsigned int m_height;
 
-  static void error_callback(int error, const char* description);
-  static void key_callback(GLFWwindow* window, int key, int scancode,
-                           int action, int mods);
+  static void ErrorCallback(int error, const char* description);
+  static void KeyCallback(GLFWwindow* window, int key, int scancode, int action,
+                          int mods);
 };
 
 }  // namespace GE

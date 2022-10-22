@@ -8,11 +8,11 @@ Scene::~Scene() = default;
 
 // TODO If mesh and model have same parent we can get rid of one of these
 void Scene::add(Mesh* mesh) {
-  Meshes.push_back(mesh);
+  m_meshes.push_back(mesh);
 }
 
 void Scene::add(Model* model) {
-  Models.push_back(model);
+  m_models.push_back(model);
 }
 
 }  // namespace GE

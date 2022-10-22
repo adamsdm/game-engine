@@ -14,15 +14,14 @@
 namespace GE {
 namespace Material {
 
-int Material_I::Create_Shader_Program(const char* vert_src,
-                                      const char* frag_src) {
-  int vertexShader = Compile_Shader(vert_src, GL_VERTEX_SHADER);
-  int fragmentShader = Compile_Shader(frag_src, GL_FRAGMENT_SHADER);
-  int shaderProgram = Link_Shaders(vertexShader, fragmentShader);
+int MaterialI::createShaderProgram(const char* vert_src, const char* frag_src) {
+  int vertexShader = compileShader(vert_src, GL_VERTEX_SHADER);
+  int fragmentShader = compileShader(frag_src, GL_FRAGMENT_SHADER);
+  int shaderProgram = linkShaders(vertexShader, fragmentShader);
   return shaderProgram;
 }
 
-int Material_I::Compile_Shader(const char* shader_src, GLenum shaderType) {
+int MaterialI::compileShader(const char* shader_src, GLenum shaderType) {
   int shader = glCreateShader(shaderType);
   glShaderSource(shader, 1, &shader_src, 0);
   glCompileShader(shader);
@@ -39,7 +38,7 @@ int Material_I::Compile_Shader(const char* shader_src, GLenum shaderType) {
 
   return shader;
 }
-int Material_I::Link_Shaders(int vertexShader, int fragmentShader) {
+int MaterialI::linkShaders(int vertexShader, int fragmentShader) {
   int shaderProgram = glCreateProgram();
   glAttachShader(shaderProgram, vertexShader);
   glAttachShader(shaderProgram, fragmentShader);
@@ -61,8 +60,8 @@ int Material_I::Link_Shaders(int vertexShader, int fragmentShader) {
   return shaderProgram;
 }
 
-void Material_I::Load_And_Bind_Texture(unsigned int& texture_id,
-                                       std::string texture_path) {
+void MaterialI::loadAndBindTexture(unsigned int& texture_id,
+                                   std::string texture_path) {
   glGenTextures(1, &texture_id);
   glBindTexture(GL_TEXTURE_2D, texture_id);
   // set the texture wrapping/filtering options (on the currently bound texture object)
@@ -88,30 +87,30 @@ void Material_I::Load_And_Bind_Texture(unsigned int& texture_id,
   stbi_image_free(data);
 }
 
-void Material_I::Set_Uniform_Bool(int Program_ID, const std::string& name,
-                                  bool value) const {
+void MaterialI::setUniformBool(int Program_ID, const std::string& name,
+                               bool value) const {
   glUniform1i(glGetUniformLocation(Program_ID, name.c_str()), (int)value);
 }
-void Material_I::Set_Uniform_Int(int Program_ID, const std::string& name,
-                                 int value) const {
+void MaterialI::setUniformInt(int Program_ID, const std::string& name,
+                              int value) const {
   glUniform1i(glGetUniformLocation(Program_ID, name.c_str()), value);
 }
-void Material_I::Set_Uniform_Float(int Program_ID, const std::string& name,
-                                   float value) const {
+void MaterialI::setUniformFloat(int Program_ID, const std::string& name,
+                                float value) const {
   glUniform1f(glGetUniformLocation(Program_ID, name.c_str()), value);
 }
-void Material_I::Set_Uniform_Vec3(int Program_ID, const std::string& name,
-                                  glm::vec3 value) const {
+void MaterialI::setUniformVec3(int Program_ID, const std::string& name,
+                               glm::vec3 value) const {
   glUniform3f(glGetUniformLocation(Program_ID, name.c_str()), value.x, value.y,
               value.z);
 }
-void Material_I::Set_Uniform_Vec4(int Program_ID, const std::string& name,
-                                  glm::vec4 value) const {
+void MaterialI::setUniformVec4(int Program_ID, const std::string& name,
+                               glm::vec4 value) const {
   glUniform4f(glGetUniformLocation(Program_ID, name.c_str()), value.x, value.y,
               value.z, value.w);
 }
-void Material_I::Set_Uniform_Mat4(int Program_ID, const std::string& name,
-                                  const glm::mat4& mat) const {
+void MaterialI::setUniformMat4(int Program_ID, const std::string& name,
+                               const glm::mat4& mat) const {
   glUniformMatrix4fv(glGetUniformLocation(Program_ID, name.c_str()), 1,
                      GL_FALSE, &mat[0][0]);
 }

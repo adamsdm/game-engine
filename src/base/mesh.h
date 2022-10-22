@@ -16,32 +16,32 @@ namespace GE {
 
 class Mesh {
  public:
-  Mesh(const Geometry::Geometry_I& geometry, Material::Material_I& material);
+  Mesh(const Geometry::GeometryI& geometry, Material::MaterialI& material);
   ~Mesh();
 
-  void Set_Position(float x, float y, float z);
-  void Set_Rotation(float angle, float x, float y, float z);
+  void setPosition(float x, float y, float z);
+  void setRotation(float angle, float x, float y, float z);
 
-  glm::vec3 Get_Position() const;
-  glm::vec4 Get_Rotation() const;
+  glm::vec3 getPosition() const;
+  glm::vec4 getRotation() const;
 
-  void Render(Camera::Camera_I& cam) const;
+  void render(Camera::CameraI& cam) const;
 
  private:
   // TODO Rename to follow convention m_variable name
-  glm::vec3 Position;
-  glm::vec4 Rotation;
-  glm::vec3 Scale;
+  glm::vec3 m_position;
+  glm::vec4 m_rotation;
+  glm::vec3 m_scale;
 
-  unsigned int VBO;
-  unsigned int VAO;
-  unsigned int EBO;
-  std::vector<Vertex> Vertices;
-  std::vector<unsigned int> Indices;
-  std::vector<Texture> Textures;
+  unsigned int m_VBO;
+  unsigned int m_VAO;
+  unsigned int m_EBO;
+  std::vector<Vertex> m_vertices;
+  std::vector<unsigned int> m_indices;
+  std::vector<Texture> m_textures;
 
-  const Geometry::Geometry_I& m_geometry;
-  Material::Material_I& m_material;
+  const Geometry::GeometryI& m_geometry;
+  Material::MaterialI& m_material;
 };
 
 };  // namespace GE

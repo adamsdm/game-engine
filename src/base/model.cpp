@@ -3,37 +3,37 @@
 namespace GE {
 
 Model::Model(std::string path_to_model)
-    : Position(0.0f), Rotation(0.0f, 1.0f, 0.0f, 0.0f), Scale(1.0f) {
-  Load_Model(path_to_model);
+    : m_position(0.0f), m_rotation(0.0f, 1.0f, 0.0f, 0.0f), m_scale(1.0f) {
+  loadModel(path_to_model);
 }
 
 Model::~Model() = default;
 
-void Model::Set_Position(float x, float y, float z) {
-  Position.x = x;
-  Position.y = y;
-  Position.z = z;
+void Model::setPosition(float x, float y, float z) {
+  m_position.x = x;
+  m_position.y = y;
+  m_position.z = z;
 }
-void Model::Set_Rotation(float angle, float x, float y, float z) {
-  Rotation.x = x;
-  Rotation.y = y;
-  Rotation.z = z;
-  Rotation.w = angle;
-}
-
-glm::vec3 Model::Get_Position() const {
-  return Position;
+void Model::setRotation(float angle, float x, float y, float z) {
+  m_rotation.x = x;
+  m_rotation.y = y;
+  m_rotation.z = z;
+  m_rotation.w = angle;
 }
 
-glm::vec4 Model::Get_Rotation() const {
-  return Rotation;
+glm::vec3 Model::getPosition() const {
+  return m_position;
 }
 
-void Model::Render(Camera::Camera_I& cam) const {
+glm::vec4 Model::getRotation() const {
+  return m_rotation;
+}
+
+void Model::render(Camera::CameraI& cam) const {
   // TODO Render each mesh
 }
 
-void Model::Load_Model(std::string path) {
+void Model::loadModel(std::string path) {
   // TODO Implement me
 }
 

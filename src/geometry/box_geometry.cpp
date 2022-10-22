@@ -13,7 +13,7 @@ namespace Geometry {
 BoxGeometry::BoxGeometry(float width, float height, float depth)
     : m_width(width), m_height(height), m_depth(depth) {
 
-  Vertices = {
+  m_vertices = {
       // Position							  // Normal						  // Tex pos
       // Back
       Vertex{glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec3(0.0f, 0.0f, -1.0f),
@@ -94,20 +94,20 @@ BoxGeometry::BoxGeometry(float width, float height, float depth)
       Vertex{glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f),
              glm::vec2(0.0f, 1.0f)}};
 
-  Indices = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,
-             12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
-             24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
+  m_indices = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,
+               12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+               24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
 }
 
 BoxGeometry::~BoxGeometry() {
   ;
 }
 
-std::vector<Vertex> BoxGeometry::Get_Vertices() const {
-  return Vertices;
+std::vector<Vertex> BoxGeometry::getVertices() const {
+  return m_vertices;
 }
-std::vector<unsigned int> BoxGeometry::Get_Indices() const {
-  return Indices;
+std::vector<unsigned int> BoxGeometry::getIndices() const {
+  return m_indices;
 }
 
 }  // namespace Geometry

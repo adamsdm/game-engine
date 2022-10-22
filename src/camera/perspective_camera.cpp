@@ -10,44 +10,42 @@ PerspectiveCamera::PerspectiveCamera(float fov, float aspect, float near,
       m_aspect(aspect),
       m_near(near),
       m_far(far),
-      cam_Pos(0.0f, 0.0f, 3.0f),
-      cam_Front(0.0f, 0.0f, -1.0f),
-      cam_Up(0.0f, 1.0f, 0.0f) {
-  Calculate_Projection_Matrix();
-  Calculate_View_Matrix();
+      m_cam_pos(0.0f, 0.0f, 3.0f),
+      m_cam_front(0.0f, 0.0f, -1.0f),
+      m_cam_up(0.0f, 1.0f, 0.0f) {
+  calculateProjectionMatrix();
+  calculateViewMatrix();
 }
 
 PerspectiveCamera::~PerspectiveCamera() = default;
 
-glm::mat4 PerspectiveCamera::Get_Projection_Matrix() const {
-  return cam_Projection_Matrix;
+glm::mat4 PerspectiveCamera::getProjectionMatrix() const {
+  return m_cam_projection_matrix;
 }
 
-glm::mat4 PerspectiveCamera::Get_View_Matrix() const {
-  return cam_View_Matrix;
+glm::mat4 PerspectiveCamera::getViewMatrix() const {
+  return m_cam_view_matrix;
 }
 
-glm::vec3 PerspectiveCamera::Get_Position() const {
-  return cam_Pos;
+glm::vec3 PerspectiveCamera::getPosition() const {
+  return m_cam_pos;
 }
 
 // TODO pass as const ref and rename
-void PerspectiveCamera::Set_Position(glm::vec3 New_Position) {
-  cam_Pos.x = New_Position.x;
-  cam_Pos.y = New_Position.y;
-  cam_Pos.z = New_Position.z;
+void PerspectiveCamera::setPosition(glm::vec3 new_pos) {
+  m_cam_pos.x = new_pos.x;
+  m_cam_pos.y = new_pos.y;
+  m_cam_pos.z = new_pos.z;
 
-  // Recalcuate view matrix
-  Calculate_View_Matrix();
+  calculateViewMatrix();
 }
 
-void PerspectiveCamera::Calculate_View_Matrix() {
-  cam_View_Matrix = glm::lookAt(cam_Pos, cam_Pos + cam_Front,
-                                cam_Up);
+void PerspectiveCamera::calculateViewMatrix() {
+  m_cam_view_matrix = glm::lookAt(m_cam_pos, m_cam_pos + m_cam_front, m_cam_up);
 }
 
-void PerspectiveCamera::Calculate_Projection_Matrix() {
-  cam_Projection_Matrix =
+void PerspectiveCamera::calculateProjectionMatrix() {
+  m_cam_projection_matrix =
       glm::perspective(glm::radians(m_fov), m_aspect, m_near, m_far);
 }
 

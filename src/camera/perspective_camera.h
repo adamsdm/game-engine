@@ -10,19 +10,19 @@
 namespace GE {
 namespace Camera {
 
-class PerspectiveCamera : public Camera_I {
+class PerspectiveCamera : public CameraI {
  public:
   PerspectiveCamera(float fov, float aspect, float near, float far);
   ~PerspectiveCamera();
 
-  void Set_Position(glm::vec3 New_Position);
-  glm::mat4 Get_View_Matrix() const;
-  glm::mat4 Get_Projection_Matrix() const;
-  glm::vec3 Get_Position() const;
+  void setPosition(glm::vec3 newPos) override;
+  glm::mat4 getViewMatrix() const override;
+  glm::mat4 getProjectionMatrix() const override;
+  glm::vec3 getPosition() const override;
 
  private:
-  void Calculate_View_Matrix();
-  void Calculate_Projection_Matrix();
+  void calculateViewMatrix();
+  void calculateProjectionMatrix();
 
   float m_fov;
   float m_aspect;
@@ -30,12 +30,12 @@ class PerspectiveCamera : public Camera_I {
   float m_far;
 
   // TODO These are m_ variables
-  glm::vec3 cam_Pos;
-  glm::vec3 cam_Front;
-  glm::vec3 cam_Up;
+  glm::vec3 m_cam_pos;
+  glm::vec3 m_cam_front;
+  glm::vec3 m_cam_up;
 
-  glm::mat4 cam_View_Matrix;
-  glm::mat4 cam_Projection_Matrix;
+  glm::mat4 m_cam_view_matrix;
+  glm::mat4 m_cam_projection_matrix;
 };
 
 }  // namespace Camera

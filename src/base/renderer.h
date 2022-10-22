@@ -1,8 +1,13 @@
 #ifndef GE_RENDERER_H
 #define GE_RENDERER_H
 
+// clang-format off
+// These includes have to be included in this order.
+// Clang format will try to rearrange them
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+// clang-format on
+
 #include <glm/glm.hpp>
 
 #include "app_window.h"
@@ -16,10 +21,10 @@ class Renderer {
   Renderer(AppWindow window);
   ~Renderer();
 
-  void Set_Clear_Color(float red, float green, float blue, float alpha);
-  void Set_Size(const unsigned int width, const unsigned int height);
+  void setClearColor(float red, float green, float blue, float alpha);
+  void setSize(unsigned int width, unsigned int height);
 
-  void Render(Scene sc, Camera::Camera_I& cam);
+  void render(Scene sc, Camera::CameraI& cam);
 
  private:
   // TODO Raw ptr..

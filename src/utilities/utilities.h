@@ -9,7 +9,7 @@
 namespace GE {
 namespace Utilities {
 
-std::string Read_From_File(const char* path);
+std::string readFromFile(const char* path);
 
 }
 }  // namespace GE

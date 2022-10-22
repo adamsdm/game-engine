@@ -13,19 +13,19 @@
 namespace GE {
 namespace Geometry {
 
-class BoxGeometry : public Geometry_I {
+class BoxGeometry : public GeometryI {
  public:
   // TODO Set default values of these
   BoxGeometry(float width, float height, float depth);
   virtual ~BoxGeometry();
 
-  std::vector<Vertex> Get_Vertices() const override;
-  std::vector<unsigned int> Get_Indices() const override;
+  std::vector<Vertex> getVertices() const override;
+  std::vector<unsigned int> getIndices() const override;
 
  private:
   // TODO Rename to follow convention
-  std::vector<Vertex> Vertices;
-  std::vector<unsigned int> Indices;
+  std::vector<Vertex> m_vertices;
+  std::vector<unsigned int> m_indices;
 
   // TODO These are currently unused
   float m_width;

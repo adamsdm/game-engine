@@ -15,36 +15,36 @@ namespace GE {
 namespace Material {
 
 // TODO This isn't an interface, more like an abstract class
-class Material_I {
+class MaterialI {
  public:
-  virtual ~Material_I(){};
-  virtual int Get_Program_ID() const = 0;
-  virtual void Update_Uniforms() const = 0;
-  virtual void Bind_Textures() const = 0;
-  virtual void Set_View_Matrix(glm::mat4 view_matrix) = 0;
-  virtual void Set_View_Pos(glm::vec3 view_pos) = 0;
-  virtual void Set_Projection_Matrix(glm::mat4 projection_matrix) = 0;
-  virtual void Set_Model_Matrix(glm::mat4 model_matrix) = 0;
+  virtual ~MaterialI(){};
+  virtual int getProgramId() const = 0;
+  virtual void updateUniforms() const = 0;
+  virtual void bindTextures() const = 0;
+  virtual void setViewMatrix(glm::mat4 view_matrix) = 0;
+  virtual void setViewPos(glm::vec3 view_pos) = 0;
+  virtual void setProjectionMatrix(glm::mat4 projection_matrix) = 0;
+  virtual void setModelMatrix(glm::mat4 model_matrix) = 0;
 
 // TODO Move to util lib? Or free functions
  protected:
-  int Create_Shader_Program(const char* vert_src, const char* frag_src);
-  int Compile_Shader(const char* shader_src, GLenum shaderType);
-  int Link_Shaders(int vertexShader, int fragmentShader);
-  void Load_And_Bind_Texture(unsigned int& texture_id,
+  int createShaderProgram(const char* vert_src, const char* frag_src);
+  int compileShader(const char* shader_src, GLenum shaderType);
+  int linkShaders(int vertexShader, int fragmentShader);
+  void loadAndBindTexture(unsigned int& texture_id,
                              std::string texture_path);
 
-  void Set_Uniform_Bool(int Program_ID, const std::string& name,
+  void setUniformBool(int Program_ID, const std::string& name,
                         bool value) const;
-  void Set_Uniform_Int(int Program_ID, const std::string& name,
+  void setUniformInt(int Program_ID, const std::string& name,
                        int value) const;
-  void Set_Uniform_Float(int Program_ID, const std::string& name,
+  void setUniformFloat(int Program_ID, const std::string& name,
                          float value) const;
-  void Set_Uniform_Vec3(int Program_ID, const std::string& name,
+  void setUniformVec3(int Program_ID, const std::string& name,
                         glm::vec3 value) const;
-  void Set_Uniform_Vec4(int Program_ID, const std::string& name,
+  void setUniformVec4(int Program_ID, const std::string& name,
                         glm::vec4 value) const;
-  void Set_Uniform_Mat4(int Program_ID, const std::string& name,
+  void setUniformMat4(int Program_ID, const std::string& name,
                         const glm::mat4& mat) const;
 };
 }  // namespace Material

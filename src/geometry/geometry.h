@@ -9,11 +9,11 @@
 namespace GE {
 namespace Geometry {
 // TODO Rename interface
-class Geometry_I {
+class GeometryI {
  public:
-  virtual ~Geometry_I() = default;
-  virtual std::vector<Vertex> Get_Vertices() const = 0;
-  virtual std::vector<unsigned int> Get_Indices() const = 0;
+  virtual ~GeometryI() = default;
+  virtual std::vector<Vertex> getVertices() const = 0;
+  virtual std::vector<unsigned int> getIndices() const = 0;
 };
 }  // namespace Geometry
 }  // namespace GE

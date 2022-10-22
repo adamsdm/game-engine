@@ -22,29 +22,29 @@
 
 namespace GE {
 namespace Material {
-class MeshPhongMaterial : public Material_I {
+class MeshPhongMaterial : public MaterialI {
  public:
   MeshPhongMaterial(float r, float g, float b, float a);
   MeshPhongMaterial(std::string texture_path);
   ~MeshPhongMaterial();
 
   // TODO These are common for all materials, move to base class?
-  int Get_Program_ID() const;
-  void Update_Uniforms() const;
-  void Bind_Textures() const;
-  void Set_View_Matrix(glm::mat4 view_matrix);
-  void Set_View_Pos(glm::vec3 view_pos);
-  void Set_Projection_Matrix(glm::mat4 projection_matrix);
-  void Set_Model_Matrix(glm::mat4 model_matrix);
+  int getProgramId() const override;
+  void updateUniforms() const override;
+  void bindTextures() const override;
+  void setViewMatrix(glm::mat4 view_matrix) override;
+  void setViewPos(glm::vec3 view_pos) override;
+  void setProjectionMatrix(glm::mat4 projection_matrix) override;
+  void setModelMatrix(glm::mat4 model_matrix) override;
 
  private:
-  const char* Vert_Shader_Source;
-  const char* Frag_Shader_Source;
-  int Program_ID;
+  const char* m_vert_shader_source;
+  const char* m_frag_shader_source;
+  int m_program_id;
 
-  unsigned int texture;
+  unsigned int m_texture;
 
-  glm::vec4 Color;
+  glm::vec4 m_color;
 };
 }  // namespace Material
 }  // namespace GE

@@ -1,4 +1,3 @@
-
 #include "plane_geometry.h"
 
 #include <iostream>
@@ -43,7 +42,7 @@ PlaneGeometry::PlaneGeometry(float width, float height,
       v.TexCoords.s = j / m_width_segments;
       v.TexCoords.t = i / m_heigth_segments;
 
-      Vertices.push_back(v);
+      m:m_vertices.push_back(v);
     }
   }
 
@@ -56,25 +55,25 @@ PlaneGeometry::PlaneGeometry(float width, float height,
       unsigned int c = (j + 1) + (m_width_segments + 1) * (i + 1);
       unsigned int d = (j + 1) + (m_width_segments + 1) * i;
 
-      Indices.push_back(a);
-      Indices.push_back(b);
-      Indices.push_back(d);
+      m_indices.push_back(a);
+      m_indices.push_back(b);
+      m_indices.push_back(d);
 
-      Indices.push_back(b);
-      Indices.push_back(c);
-      Indices.push_back(d);
+      m_indices.push_back(b);
+      m_indices.push_back(c);
+      m_indices.push_back(d);
     }
   }
 }
 
 PlaneGeometry::~PlaneGeometry() = default;
 
-std::vector<Vertex> PlaneGeometry::Get_Vertices() const {
-  return Vertices;
+std::vector<Vertex> PlaneGeometry::getVertices() const {
+  return m_vertices;
 }
 
-std::vector<unsigned int> PlaneGeometry::Get_Indices() const {
-  return Indices;
+std::vector<unsigned int> PlaneGeometry::getIndices() const {
+  return m_indices;
 }
 }  // namespace Geometry
 }  // namespace GE
