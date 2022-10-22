@@ -11,8 +11,8 @@ int main() {
   GE::Scene scene;
   GE::Renderer renderer(appWindow);
 
-  float windowRatio = static_cast<float>(appWindow.getWidth()) /
-                      static_cast<float>(appWindow.getHeight());
+  float windowRatio{static_cast<float>(appWindow.getWidth()) /
+                    static_cast<float>(appWindow.getHeight())};
   GE::Camera::PerspectiveCamera camera(75, windowRatio, 0.1, 1000);
 
   renderer.setClearColor(0.1F, 0.1F, 0.1F, 1.0F);
@@ -22,28 +22,28 @@ int main() {
   GE::Material::MeshPhongMaterial adamMaterial("resources/textures/adam.jpg");
   GE::Material::MeshPhongMaterial containerMaterial(
       "resources/textures/container.jpg");
-  GE::Material::MeshPhongMaterial grassMaterial(
-      "resources/textures/grass.jpg");
+  GE::Material::MeshPhongMaterial grassMaterial("resources/textures/grass.jpg");
 
-  // TODO Raw ptrs
-  auto* adamBox = new GE::Mesh(geometry, adamMaterial);
-  auto* containerBox = new GE::Mesh(geometry, containerMaterial);
-  auto* grassBox = new GE::Mesh(geometry, grassMaterial);
+  auto adamBox{std::make_shared<GE::Mesh>(geometry, adamMaterial)};
+  auto containerBox{std::make_shared<GE::Mesh>(geometry, containerMaterial)};
+  auto grassBox{std::make_shared<GE::Mesh>(geometry, grassMaterial)};
 
   adamBox->setPosition(-1.5, 0.0, 0.0);
   containerBox->setPosition(0.0, 0.0, 0.0);
   grassBox->setPosition(1.5, 0.0, 0.0);
 
-  auto* model = new GE::Model("resources/objects/backpack/backpack.obj");
+  auto model{
+      std::make_shared<GE::Model>("resources/objects/backpack/backpack.obj")};
 
   scene.add(adamBox);
   scene.add(containerBox);
   scene.add(grassBox);
   scene.add(model);
 
-  float time = 0;
-  float rotationSpeed = 0.2;
-  // Game loop
+  float time{0};
+  float rotationSpeed{0.2};
+
+  // Main loop
   while (!appWindow.shouldClose()) {
     time = glfwGetTime();
 
@@ -53,11 +53,4 @@ int main() {
 
     renderer.render(scene, camera);
   }
-
-  delete adamBox;
-  delete containerBox;
-  delete grassBox;
-  delete model;
-
-  return 0;
 }

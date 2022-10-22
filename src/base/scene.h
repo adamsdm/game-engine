@@ -4,6 +4,7 @@
 #include "mesh.h"
 #include "model.h"
 
+#include <memory>
 #include <vector>
 
 namespace GE {
@@ -13,16 +14,18 @@ class Scene {
   Scene();
   ~Scene();
 
-  // TODO Raw ptrs....
-  void add(Mesh* mesh);
-  void add(Model* model);
-  std::vector<Mesh*> const& getMeshes() const { return m_meshes; }
-  std::vector<Model*> const& getModels() const { return m_models; }
+  void add(std::shared_ptr<Mesh> mesh);
+  void add(std::shared_ptr<Model> model);
+  std::vector<std::shared_ptr<Mesh>> const& getMeshes() const {
+    return m_meshes;
+  }
+  std::vector<std::shared_ptr<Model>> const& getModels() const {
+    return m_models;
+  }
 
  private:
-  // TODO Naming convention, also raw ptrs
-  std::vector<Mesh*> m_meshes;
-  std::vector<Model*> m_models;
+  std::vector<std::shared_ptr<Mesh>> m_meshes;
+  std::vector<std::shared_ptr<Model>> m_models;
 };
 }  // namespace GE
 
