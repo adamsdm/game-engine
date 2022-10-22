@@ -11,7 +11,6 @@
 namespace GE {
 namespace Material {
 
-// TODO This isn't an interface, more like an abstract class
 class MaterialI {
  public:
   virtual ~MaterialI(){};
@@ -23,7 +22,6 @@ class MaterialI {
   virtual void setProjectionMatrix(glm::mat4 projection_matrix) = 0;
   virtual void setModelMatrix(glm::mat4 model_matrix) = 0;
 
-  // TODO Move to util lib? Or free functions
  protected:
   int createShaderProgram(const char* vert_src, const char* frag_src);
   int compileShader(const char* shader_src, GLenum shaderType);

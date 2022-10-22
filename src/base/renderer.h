@@ -24,10 +24,9 @@ class Renderer {
   void setClearColor(float red, float green, float blue, float alpha);
   void setSize(unsigned int width, unsigned int height);
 
-  void render(Scene sc, Camera::CameraI& cam);
+  void render(const Scene& scene, const Camera::CameraI& cam);
 
  private:
-  // TODO Raw ptr..
   GLFWwindow* m_window;
   glm::vec4 m_clear_color;
   unsigned int m_width;

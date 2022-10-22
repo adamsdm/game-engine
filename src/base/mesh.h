@@ -23,7 +23,7 @@ class Mesh {
   glm::vec3 getPosition() const;
   glm::vec4 getRotation() const;
 
-  void render(Camera::CameraI& cam) const;
+  void render(const Camera::CameraI& cam) const;
 
  private:
   glm::vec3 m_position;
@@ -39,6 +39,8 @@ class Mesh {
 
   const Geometry::GeometryI& m_geometry;
   Material::MaterialI& m_material;
+
+  glm::mat4 calculateModelMatrix() const;
 };
 
 };  // namespace GE

@@ -19,7 +19,6 @@ public:
   unsigned int getHeight() const;
 
  private:
- // TODO This should not be a raw ptr
   GLFWwindow* m_window;
   unsigned int m_width;
   unsigned int m_height;

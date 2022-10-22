@@ -11,7 +11,6 @@ AppWindow::AppWindow(unsigned int width, unsigned int Height)
     exit(EXIT_FAILURE);
   }
 
-  // TODO Split this into helper functions
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -39,7 +38,6 @@ AppWindow::AppWindow(unsigned int width, unsigned int Height)
 
 AppWindow::~AppWindow() = default;
 
-// TODO This should return a shared_ptr instead
 GLFWwindow* AppWindow::get() {
   return m_window;
 }
@@ -61,7 +59,6 @@ void AppWindow::ErrorCallback(int error, const char* description) {
 
 void AppWindow::KeyCallback(GLFWwindow* window, int key, int scancode,
                             int action, int mods) {
-  // TODO This should be dispatched to a KeyHandler
   if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     glfwSetWindowShouldClose(window, GLFW_TRUE);
   if (key == GLFW_KEY_E && action == GLFW_PRESS) {

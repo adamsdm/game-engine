@@ -15,7 +15,7 @@ class PerspectiveCamera : public CameraI {
   PerspectiveCamera(float fov, float aspect, float near, float far);
   ~PerspectiveCamera();
 
-  void setPosition(glm::vec3 newPos) override;
+  void setPosition(const glm::vec3& newPos) override;
   glm::mat4 getViewMatrix() const override;
   glm::mat4 getProjectionMatrix() const override;
   glm::vec3 getPosition() const override;
@@ -29,7 +29,6 @@ class PerspectiveCamera : public CameraI {
   float m_near;
   float m_far;
 
-  // TODO These are m_ variables
   glm::vec3 m_cam_pos;
   glm::vec3 m_cam_front;
   glm::vec3 m_cam_up;

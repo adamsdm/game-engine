@@ -20,15 +20,13 @@ void Renderer::setSize(const unsigned int width, const unsigned int height) {
   m_height = width;
 }
 
-// TODO These should probably be const refs
-void Renderer::render(Scene scene, Camera::CameraI& cam) {
+void Renderer::render(const Scene& scene, const Camera::CameraI& cam) {
   glClearColor(m_clear_color.r, m_clear_color.g, m_clear_color.b,
                m_clear_color.a);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  // Change to for-each loop
-  for (int i = 0; i < scene.getMeshes().size(); i++) {
-    scene.getMeshes()[i]->render(cam);
+  for(auto const& mesh : scene.getMeshes()) {
+    mesh->render(cam);
   }
 
   glfwSwapBuffers(m_window);

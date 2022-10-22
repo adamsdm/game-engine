@@ -1,9 +1,9 @@
 #include "mesh.h"
 
-#include <iostream>
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
 
 namespace GE {
 
@@ -15,19 +15,17 @@ Mesh::Mesh(const Geometry::GeometryI& geometry, Material::MaterialI& material)
       m_scale(1.0f) {
 
   m_vertices = m_geometry.getVertices();
-  m_indices = m_geometry.getIndices(); 
+  m_indices = m_geometry.getIndices();
 
-  // TODO move to helper functions
   glGenVertexArrays(1, &m_VAO);
   glGenBuffers(1, &m_VBO);
   glGenBuffers(1, &m_EBO);
   // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
   glBindVertexArray(m_VAO);
 
-  // TODO A lot of C style casts here
   glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-  glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), &m_vertices[0],
-               GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex),
+               &m_vertices[0], GL_STATIC_DRAW);
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int),
@@ -73,26 +71,28 @@ glm::vec4 Mesh::getRotation() const {
   return m_rotation;
 }
 
-// TODO Split into helper functions to increase readability
-void Mesh::render(Camera::CameraI& cam) const {
+void Mesh::render(const Camera::CameraI& cam) const {
+  // TODO This class shouldn't care about this, move to material class
   glUseProgram(m_material.getProgramId());
-
-  glm::mat4 modelMatrix(1.0f);
-  modelMatrix = glm::translate(modelMatrix, m_position);
-  modelMatrix = glm::rotate(modelMatrix, m_rotation.w,
-                            glm::vec3(m_rotation.x, m_rotation.y, m_rotation.z));
-  modelMatrix = glm::scale(modelMatrix, m_scale);
-
-  // TODO This class shouldn't care about this
   m_material.setViewMatrix(cam.getViewMatrix());
   m_material.setViewPos(cam.getPosition());
   m_material.setProjectionMatrix(cam.getProjectionMatrix());
-  m_material.setModelMatrix(modelMatrix);
+  m_material.setModelMatrix(calculateModelMatrix());
   m_material.bindTextures();
   m_material.updateUniforms();
 
   glBindVertexArray(m_VAO);
   glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
+}
+
+glm::mat4 Mesh::calculateModelMatrix() const {
+  glm::mat4 modelMatrix(1.0f);
+  modelMatrix = glm::translate(modelMatrix, m_position);
+  modelMatrix =
+      glm::rotate(modelMatrix, m_rotation.w,
+                  glm::vec3(m_rotation.x, m_rotation.y, m_rotation.z));
+  modelMatrix = glm::scale(modelMatrix, m_scale);
+  return modelMatrix;
 }
 
 };  // namespace GE

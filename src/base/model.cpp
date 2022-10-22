@@ -30,7 +30,7 @@ glm::vec4 Model::getRotation() const {
 }
 
 void Model::render(Camera::CameraI& cam) const {
-  // TODO Render each mesh
+  // TODO Render each model
 }
 
 void Model::loadModel(std::string path) {

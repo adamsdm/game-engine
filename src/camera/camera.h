@@ -15,7 +15,7 @@ class CameraI {
   virtual glm::mat4 getProjectionMatrix() const = 0;
   virtual glm::vec3 getPosition() const = 0;
 
-  virtual void setPosition(glm::vec3 New_Position) = 0;
+  virtual void setPosition(const glm::vec3& newPosition) = 0;
 };
 }  // namespace Camera
 }  // namespace GE

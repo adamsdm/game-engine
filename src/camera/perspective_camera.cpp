@@ -31,11 +31,10 @@ glm::vec3 PerspectiveCamera::getPosition() const {
   return m_cam_pos;
 }
 
-// TODO pass as const ref
-void PerspectiveCamera::setPosition(glm::vec3 new_pos) {
-  m_cam_pos.x = new_pos.x;
-  m_cam_pos.y = new_pos.y;
-  m_cam_pos.z = new_pos.z;
+void PerspectiveCamera::setPosition(const glm::vec3& newPos) {
+  m_cam_pos.x = newPos.x;
+  m_cam_pos.y = newPos.y;
+  m_cam_pos.z = newPos.z;
 
   calculateViewMatrix();
 }
