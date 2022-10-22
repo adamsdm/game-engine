@@ -1,10 +1,3 @@
-/*
- * mesh_phone_material.h
- *
- *  Created on: 31 Dec 2018
- *      Author: adamsoderstrom
- */
-
 #ifndef SRC_MATERIAL_MESH_PHONG_MATERIAL_H_
 #define SRC_MATERIAL_MESH_PHONG_MATERIAL_H_
 

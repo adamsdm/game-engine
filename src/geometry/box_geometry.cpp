@@ -1,10 +1,3 @@
-/*
- * box_geometry.cpp
- *
- *  Created on: 30 Dec 2018
- *      Author: adamsoderstrom
- */
-
 #include <box_geometry.h>
 
 namespace GE {

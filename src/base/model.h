@@ -1,5 +1,3 @@
-#define STB_IMAGE_IMPLEMENTATION
-
 #ifndef GE_MODEL_H
 #define GE_MODEL_H
 

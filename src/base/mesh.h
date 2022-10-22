@@ -1,5 +1,3 @@
-
-
 #ifndef GE_MESH_H
 #define GE_MESH_H
 

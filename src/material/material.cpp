@@ -1,10 +1,3 @@
-/*
- * material.cpp
- *
- *  Created on: 29 Dec 2018
- *      Author: adamsoderstrom
- */
-
 #include "material.h"
 
 #include <iostream>

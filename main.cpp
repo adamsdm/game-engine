@@ -1,6 +1,3 @@
-//TODO: Move to some root GE class
-#define STB_IMAGE_IMPLEMENTATION
-
 #include <cmath>
 #include <cstdio>
 #include <glm/glm.hpp>

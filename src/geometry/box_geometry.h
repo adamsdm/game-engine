@@ -1,10 +1,3 @@
-/*
- * box_geometry.h
- *
- *  Created on: 30 Dec 2018
- *      Author: adamsoderstrom
- */
-
 #ifndef SRC_GEOMETRY_BOX_GEOMETRY_H_
 #define SRC_GEOMETRY_BOX_GEOMETRY_H_
 
