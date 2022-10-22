@@ -23,7 +23,6 @@ class BoxGeometry : public GeometryI {
   std::vector<unsigned int> getIndices() const override;
 
  private:
-  // TODO Rename to follow convention
   std::vector<Vertex> m_vertices;
   std::vector<unsigned int> m_indices;
 

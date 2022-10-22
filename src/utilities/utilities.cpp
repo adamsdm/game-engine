@@ -3,7 +3,6 @@
 namespace GE {
 namespace Utilities {
 
-// TODO Rename this file
 std::string readFromFile(const char* path) {
   std::string code;
   std::ifstream file;

@@ -4,8 +4,8 @@
 
 namespace GE {
 
-AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
-    : m_width(Width), m_height(Height) {
+AppWindow::AppWindow(unsigned int width, unsigned int Height)
+    : m_width(width), m_height(Height) {
   if (!glfwInit()) {
     std::cerr << "ERROR:: Failed to initialize GLFW" << std::endl;
     exit(EXIT_FAILURE);
@@ -21,7 +21,7 @@ AppWindow::AppWindow(const unsigned int Width, const unsigned int Height)
       GL_TRUE);  // uncomment this statement to fix compilation on OS X
 #endif
 
-  m_window = glfwCreateWindow(Width, Height, "Simple example", nullptr, nullptr);
+  m_window = glfwCreateWindow(m_width, m_height, "Simple example", nullptr, nullptr);
   if (!m_window) {
     glfwTerminate();
     std::cerr << "ERROR:: Failed to create GLFW window" << std::endl;

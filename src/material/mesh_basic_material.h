@@ -23,17 +23,16 @@ class MeshBasicMaterial : public MaterialI {
   ~MeshBasicMaterial();
 
   // TODO These are common for all materials, move too base class?
-  int getProgramId() const;
-  void updateUniforms() const;
-  void bindTextures() const;
-  void setViewMatrix(glm::mat4 view_matrix);
-  void setViewPos(glm::vec3 view_pos);
-  void setProjectionMatrix(glm::mat4 projection_matrix);
-  void setModelMatrix(glm::mat4 model_matrix);
+  int getProgramId() const override;
+  void updateUniforms() const override;
+  void bindTextures() const override;
+  void setViewMatrix(glm::mat4 view_matrix) override;
+  void setViewPos(glm::vec3 view_pos) override;
+  void setProjectionMatrix(glm::mat4 projection_matrix) override;
+  void setModelMatrix(glm::mat4 model_matrix) override;
 
  private:
  // TODO Raw ptrs
- // TODO Rename
   const char* m_vert_shader_source;
   const char* m_frag_shader_source;
   int m_program_id;

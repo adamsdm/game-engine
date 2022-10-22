@@ -25,24 +25,23 @@ int main() {
   GE::Material::MeshPhongMaterial adamMaterial("resources/textures/adam.jpg");
   GE::Material::MeshPhongMaterial containerMaterial(
       "resources/textures/container.jpg");
-  GE::Material::MeshPhongMaterial awesomefaceMaterial(
+  GE::Material::MeshPhongMaterial grassMaterial(
       "resources/textures/grass.jpg");
 
   // TODO Raw ptrs
-  // TODO Rename aswell
-  auto* box1 = new GE::Mesh(geometry, adamMaterial);
-  auto* box2 = new GE::Mesh(geometry, containerMaterial);
-  auto* box3 = new GE::Mesh(geometry, awesomefaceMaterial);
+  auto* adamBox = new GE::Mesh(geometry, adamMaterial);
+  auto* containerBox = new GE::Mesh(geometry, containerMaterial);
+  auto* grassBox = new GE::Mesh(geometry, grassMaterial);
 
-  box1->setPosition(-1.5, 0.0, 0.0);
-  box2->setPosition(0.0, 0.0, 0.0);
-  box3->setPosition(1.5, 0.0, 0.0);
+  adamBox->setPosition(-1.5, 0.0, 0.0);
+  containerBox->setPosition(0.0, 0.0, 0.0);
+  grassBox->setPosition(1.5, 0.0, 0.0);
 
   auto* model = new GE::Model("resources/objects/backpack/backpack.obj");
 
-  scene.add(box1);
-  scene.add(box2);
-  scene.add(box3);
+  scene.add(adamBox);
+  scene.add(containerBox);
+  scene.add(grassBox);
   scene.add(model);
 
   float time = 0;
@@ -51,16 +50,16 @@ int main() {
   while (!appWindow.shouldClose()) {
     time = glfwGetTime();
 
-    box1->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
-    box2->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
-    box3->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
+    adamBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
+    containerBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
+    grassBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
 
     renderer.render(scene, camera);
   }
 
-  delete box1;
-  delete box2;
-  delete box3;
+  delete adamBox;
+  delete containerBox;
+  delete grassBox;
   delete model;
 
   return 0;

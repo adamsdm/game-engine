@@ -20,7 +20,6 @@ PlaneGeometry::PlaneGeometry(float width, float height,
   float halfW = m_width / 2.0f;
   float halfH = m_height / 2.0f;
 
-  // TODO Rename to follow convention
   float segmentWidth =
       static_cast<float>(m_width) / static_cast<float>(m_width_segments);
   float segmentHeight =

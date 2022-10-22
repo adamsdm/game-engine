@@ -8,7 +8,6 @@
 namespace GE {
 namespace Camera {
 
-// TODO Rename interface
 class CameraI {
  public:
   virtual ~CameraI() = default;

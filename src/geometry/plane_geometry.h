@@ -18,7 +18,6 @@ class PlaneGeometry : public GeometryI {
   std::vector<unsigned int> getIndices() const;
 
  private:
-  // TODO Rename
   std::vector<Vertex> m_vertices;
   std::vector<unsigned int> m_indices;
 

@@ -8,7 +8,6 @@
 
 namespace GE {
 namespace Geometry {
-// TODO Rename interface
 class GeometryI {
  public:
   virtual ~GeometryI() = default;

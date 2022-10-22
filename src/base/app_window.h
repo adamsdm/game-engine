@@ -1,5 +1,3 @@
-
-
 #ifndef GE_WINDOW_H
 #define GE_WINDOW_H
 
@@ -12,7 +10,7 @@
 namespace GE {
 class AppWindow {
 public:
-  AppWindow(const unsigned int Width, const unsigned int Height);
+  AppWindow(unsigned int width, unsigned int height);
   ~AppWindow();
 
   bool shouldClose();

@@ -40,8 +40,7 @@ include_directories(${STB_DIR})
 set(GE_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 include_directories(${GE_SRC_DIR})
 
-# TODO Can these be picked using wildcards? I.e dir/*.cpp
-# TODO Create several CMakelists?w
+# TODO Create several CMakelists
 # Base sources
 set(GE_CORE_BASE_SOURCES    ${GE_SRC_DIR}/base/app_window.cpp
                             ${GE_SRC_DIR}/base/mesh.cpp
