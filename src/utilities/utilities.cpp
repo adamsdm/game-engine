@@ -31,5 +31,17 @@ std::string readFromFile(const char* path) {
   return code;
 }
 
+GLenum getTextureFormat(int nrChannels) {
+  GLenum retVal{GL_RGB};
+  if (nrChannels == 1) {
+    retVal = GL_RED;
+  } else if (nrChannels == 3) {
+    retVal = GL_RGB;
+  } else if (nrChannels == 4) {
+    retVal = GL_RGBA;
+  }
+  return retVal;
+}
+
 }  // namespace Utilities
 }  // namespace GE

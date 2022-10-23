@@ -22,22 +22,18 @@ class MeshBasicMaterial : public MaterialI {
   MeshBasicMaterial(std::string texture_path);
   ~MeshBasicMaterial();
 
-  // TODO These are common for all materials, move too base class?
-  int getProgramId() const override;
-  void updateUniforms() const override;
-  void bindTextures() const override;
-  void setViewMatrix(glm::mat4 view_matrix) override;
-  void setViewPos(glm::vec3 view_pos) override;
-  void setProjectionMatrix(glm::mat4 projection_matrix) override;
-  void setModelMatrix(glm::mat4 model_matrix) override;
+  void prepareForRender(const Camera::CameraI& cam,
+                        const glm::mat4& modelMatrix) override;
+  void addSpecularMap(const std::string& specular_texture_path);
 
  private:
- // TODO Raw ptrs
+  // TODO Raw ptrs
   const char* m_vert_shader_source;
   const char* m_frag_shader_source;
   int m_program_id;
 
-  unsigned int m_texture;
+  unsigned int m_diffuse_texture{0};
+  unsigned int m_specular_texture{0};
 
   glm::vec4 m_color;
 };

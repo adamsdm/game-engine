@@ -24,7 +24,7 @@ uniform sampler2D NormalMap;
 float ambientStrength = 0.2;
 vec3 LightColor = vec3(1.0, 1.0, 1.0);
 vec3 LightPos = vec3(0.0, 0.0, 2.0);
-float specularStrength = 0.5;
+float specularStrength = 0.9;
 
 // Global variables
 vec3 norm = normalize(Normal);
@@ -51,13 +51,21 @@ vec3 calculate_specular() {
 }
 
 void main(){
-
 	vec3 ambient = calculate_ambient();
     vec3 diffuse = calculate_diffuse();
 	vec3 specular = calculate_specular(); 
 	
-	vec4 TexColor = texture(Texture, TexCoord);
-	vec3 result = (ambient + diffuse + specular) * vec3(TexColor);
+	if(UseTexture) {
+		vec3 diffuseTexColor = vec3(texture(Texture, TexCoord));
+		ambient *= diffuseTexColor;
+		diffuse *= diffuseTexColor;
+		specular *= diffuseTexColor;
+	}
 
-	FragColor = vec4(result, 1.0);
+	if(UseSpecularMap) {
+		vec3 specularTexColor = vec3(texture(SpecularMap, TexCoord));
+		specular *= specularTexColor;
+	}
+
+	FragColor = vec4(ambient + diffuse + specular, 1.0);   
 }

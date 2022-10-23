@@ -19,26 +19,13 @@ int main() {
   renderer.setSize(appWindow.getWidth(), appWindow.getHeight());
 
   GE::Geometry::BoxGeometry geometry(0.1F, 0.1F, 0.1F);
-  GE::Material::MeshPhongMaterial adamMaterial("resources/textures/adam.jpg");
   GE::Material::MeshPhongMaterial containerMaterial(
-      "resources/textures/container.jpg");
-  GE::Material::MeshPhongMaterial grassMaterial("resources/textures/grass.jpg");
-
-  auto adamBox{std::make_shared<GE::Mesh>(geometry, adamMaterial)};
+      "resources/textures/container2.png");
+  containerMaterial.addSpecularMap("resources/textures/container2_specular.png");
   auto containerBox{std::make_shared<GE::Mesh>(geometry, containerMaterial)};
-  auto grassBox{std::make_shared<GE::Mesh>(geometry, grassMaterial)};
-
-  adamBox->setPosition(-1.5, 0.0, 0.0);
   containerBox->setPosition(0.0, 0.0, 0.0);
-  grassBox->setPosition(1.5, 0.0, 0.0);
 
-  auto model{
-      std::make_shared<GE::Model>("resources/objects/backpack/backpack.obj")};
-
-  scene.add(adamBox);
   scene.add(containerBox);
-  scene.add(grassBox);
-  scene.add(model);
 
   float time{0};
   float rotationSpeed{0.2};
@@ -46,11 +33,7 @@ int main() {
   // Main loop
   while (!appWindow.shouldClose()) {
     time = glfwGetTime();
-
-    adamBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
     containerBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
-    grassBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
-
     renderer.render(scene, camera);
   }
 }

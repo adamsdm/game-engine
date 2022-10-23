@@ -15,12 +15,12 @@ MeshPhongMaterial::MeshPhongMaterial(float r, float g, float b, float a)
   m_vert_shader_source = vStringSrc.c_str();
   m_frag_shader_source = fStringSrc.c_str();
 
-  m_program_id =
-      MaterialI::createShaderProgram(m_vert_shader_source, m_frag_shader_source);
+  m_program_id = MaterialI::createShaderProgram(m_vert_shader_source,
+                                                m_frag_shader_source);
 }
 
-MeshPhongMaterial::MeshPhongMaterial(std::string texture_path) {
-  MaterialI::loadAndBindTexture(m_texture, texture_path);
+MeshPhongMaterial::MeshPhongMaterial(const std::string& diffuse_texture_path) {
+  MaterialI::loadAndBindTexture(m_diffuse_texture, diffuse_texture_path);
 
   std::string vStringSrc = ::GE::Utilities::readFromFile(
       "resources/shaders/mesh_phong_material.vert");
@@ -31,38 +31,40 @@ MeshPhongMaterial::MeshPhongMaterial(std::string texture_path) {
   m_vert_shader_source = vStringSrc.c_str();
   m_frag_shader_source = fStringSrc.c_str();
 
-  m_program_id =
-      MaterialI::createShaderProgram(m_vert_shader_source, m_frag_shader_source);
+  m_program_id = MaterialI::createShaderProgram(m_vert_shader_source,
+                                                m_frag_shader_source);
 }
 
 MeshPhongMaterial::~MeshPhongMaterial() = default;
 
-int MeshPhongMaterial::getProgramId() const {
-  return m_program_id;
-}
+void MeshPhongMaterial::prepareForRender(const Camera::CameraI& cam,
+                                         const glm::mat4& modelMatrix) {
+  glUseProgram(m_program_id);
+  MaterialI::setUniformMat4(m_program_id, "View", cam.getViewMatrix());
+  MaterialI::setUniformVec3(m_program_id, "ViewPos", cam.getPosition());
+  MaterialI::setUniformMat4(m_program_id, "Projection",
+                            cam.getProjectionMatrix());
+  MaterialI::setUniformMat4(m_program_id, "Model", modelMatrix);
 
-void MeshPhongMaterial::setViewMatrix(glm::mat4 view_matrix) {
-  MaterialI::setUniformMat4(m_program_id, "View", view_matrix);
-}
-
-void MeshPhongMaterial::setViewPos(glm::vec3 view_pos) {
-  MaterialI::setUniformVec3(m_program_id, "ViewPos", view_pos);
-}
-
-void MeshPhongMaterial::setProjectionMatrix(glm::mat4 projection_matrix) {
-  MaterialI::setUniformMat4(m_program_id, "Projection", projection_matrix);
-}
-void MeshPhongMaterial::setModelMatrix(glm::mat4 model_matrix) {
-  MaterialI::setUniformMat4(m_program_id, "Model", model_matrix);
-}
-
-void MeshPhongMaterial::updateUniforms() const {
   MaterialI::setUniformVec4(m_program_id, "Color", m_color);
+
+  if (m_diffuse_texture) {
+    MaterialI::setUniformBool(m_program_id, "UseTexture", true);
+    MaterialI::setUniformInt(m_program_id, "Texture", 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_diffuse_texture);
+  }
+  if (m_specular_texture) {
+    MaterialI::setUniformBool(m_program_id, "UseSpecularMap", true);
+    MaterialI::setUniformInt(m_program_id, "SpecularMap", 1);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_specular_texture);
+  }
 }
 
-void MeshPhongMaterial::bindTextures() const {
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, m_texture);
+void MeshPhongMaterial::addSpecularMap(
+    const std::string& specular_texture_path) {
+  MaterialI::loadAndBindTexture(m_specular_texture, specular_texture_path);
 }
 
 }  // namespace Material

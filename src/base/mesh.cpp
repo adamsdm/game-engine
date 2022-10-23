@@ -72,15 +72,8 @@ glm::vec4 Mesh::getRotation() const {
 }
 
 void Mesh::render(const Camera::CameraI& cam) const {
-  // TODO This class shouldn't care about this, move to material class
-  glUseProgram(m_material.getProgramId());
-  m_material.setViewMatrix(cam.getViewMatrix());
-  m_material.setViewPos(cam.getPosition());
-  m_material.setProjectionMatrix(cam.getProjectionMatrix());
-  m_material.setModelMatrix(calculateModelMatrix());
-  m_material.bindTextures();
-  m_material.updateUniforms();
 
+  m_material.prepareForRender(cam, calculateModelMatrix());
   glBindVertexArray(m_VAO);
   glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
 }

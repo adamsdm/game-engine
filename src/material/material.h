@@ -8,19 +8,17 @@
 #include <glm/vec4.hpp>
 #include <string>
 
+#include "camera.h"
+
 namespace GE {
 namespace Material {
 
 class MaterialI {
  public:
   virtual ~MaterialI(){};
-  virtual int getProgramId() const = 0;
-  virtual void updateUniforms() const = 0;
-  virtual void bindTextures() const = 0;
-  virtual void setViewMatrix(glm::mat4 view_matrix) = 0;
-  virtual void setViewPos(glm::vec3 view_pos) = 0;
-  virtual void setProjectionMatrix(glm::mat4 projection_matrix) = 0;
-  virtual void setModelMatrix(glm::mat4 model_matrix) = 0;
+
+  virtual void prepareForRender(const Camera::CameraI& cam,
+                                const glm::mat4& modelMatrix) = 0;
 
  protected:
   int createShaderProgram(const char* vert_src, const char* frag_src);

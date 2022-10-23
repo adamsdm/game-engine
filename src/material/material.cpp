@@ -6,6 +6,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include "utilities/utilities.h"
+
 namespace GE {
 namespace Material {
 
@@ -72,8 +74,10 @@ void MaterialI::loadAndBindTexture(unsigned int& texture_id,
 
   unsigned char* data =
       stbi_load(texture_path.c_str(), &width, &height, &nrChannels, 0);
+
   if (data) {
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
+    GLenum format{::GE::Utilities::getTextureFormat(nrChannels)};
+    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format,
                  GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
   } else {
