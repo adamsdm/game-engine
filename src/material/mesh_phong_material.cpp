@@ -38,7 +38,7 @@ MeshPhongMaterial::MeshPhongMaterial(const std::string& diffuse_texture_path) {
 MeshPhongMaterial::~MeshPhongMaterial() = default;
 
 void MeshPhongMaterial::prepareForRender(const Camera::CameraI& cam,
-                                         const glm::mat4& modelMatrix) {
+                                         const glm::mat4& modelMatrix) const {
   glUseProgram(m_program_id);
   MaterialI::setUniformMat4(m_program_id, "View", cam.getViewMatrix());
   MaterialI::setUniformVec3(m_program_id, "ViewPos", cam.getPosition());

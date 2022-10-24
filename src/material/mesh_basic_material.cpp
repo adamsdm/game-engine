@@ -39,7 +39,7 @@ MeshBasicMaterial::MeshBasicMaterial(std::string texture_path) {
 MeshBasicMaterial::~MeshBasicMaterial() = default;
 
 void MeshBasicMaterial::prepareForRender(const Camera::CameraI& cam,
-                                         const glm::mat4& modelMatrix) {
+                                         const glm::mat4& modelMatrix) const {
   glUseProgram(m_program_id);
   MaterialI::setUniformMat4(m_program_id, "View", cam.getViewMatrix());
   MaterialI::setUniformVec3(m_program_id, "ViewPos", cam.getPosition());

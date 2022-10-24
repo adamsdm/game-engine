@@ -18,7 +18,7 @@ class MaterialI {
   virtual ~MaterialI(){};
 
   virtual void prepareForRender(const Camera::CameraI& cam,
-                                const glm::mat4& modelMatrix) = 0;
+                                const glm::mat4& modelMatrix) const = 0;
 
  protected:
   int createShaderProgram(const char* vert_src, const char* frag_src);
