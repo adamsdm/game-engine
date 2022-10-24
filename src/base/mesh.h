@@ -14,7 +14,7 @@ namespace GE {
 
 class Mesh {
  public:
-  Mesh(const Geometry::GeometryI& geometry, Material::MaterialI& material);
+  Mesh(const Geometry::GeometryI& geometry, const Material::MaterialI& material);
   ~Mesh();
 
   void setPosition(float x, float y, float z);
@@ -38,7 +38,7 @@ class Mesh {
   std::vector<Texture> m_textures;
 
   const Geometry::GeometryI& m_geometry;
-  Material::MaterialI& m_material;
+  const Material::MaterialI& m_material;
 
   glm::mat4 calculateModelMatrix() const;
 };

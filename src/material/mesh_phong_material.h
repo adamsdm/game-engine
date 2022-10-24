@@ -20,9 +20,9 @@ class MeshPhongMaterial : public MaterialI {
   MeshPhongMaterial(float r, float g, float b, float a);
   MeshPhongMaterial(const std::string& diffuse_texture_path);
   ~MeshPhongMaterial();
-
+  
   void prepareForRender(const Camera::CameraI& cam,
-                        const glm::mat4& modelMatrix) override;
+                        const glm::mat4& modelMatrix) const override;
   void addSpecularMap(const std::string& specular_texture_path);
 
  private:

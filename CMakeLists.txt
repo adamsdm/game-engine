@@ -18,6 +18,7 @@ set(GLM_DIR     ${EXT_DIR}/glm)
 set(GLFW_DIR    ${EXT_DIR}/glfw)
 set(GLAD_DIR    ${EXT_DIR}/glad)
 set(STB_DIR     ${EXT_DIR}/stb)
+set(TINYOBJ_DIR ${EXT_DIR}/tinyobjloader)
 
 ### EXTERNALS
 # glfw
@@ -36,6 +37,9 @@ include_directories(${GLM_DIR})
 #stb
 include_directories(${STB_DIR})
 
+#tinyobjloader
+include_directories(${TINYOBJ_DIR})
+
 ### GAME ENGINE LIBRARY
 set(GE_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 include_directories(${GE_SRC_DIR})
@@ -52,7 +56,8 @@ set(GE_CORE_CAMERA_SOURCES  ${GE_SRC_DIR}/camera/perspective_camera.cpp)
 
 # Geometry sources
 set(GE_CORE_GEOMETRY_SOURCES    ${GE_SRC_DIR}/geometry/plane_geometry.cpp
-								${GE_SRC_DIR}/geometry/box_geometry.cpp)
+								${GE_SRC_DIR}/geometry/box_geometry.cpp
+                                ${GE_SRC_DIR}/geometry/basic_geometry.cpp)
 
 # Material sources
 set(GE_CORE_MATERIAL_SOURCES    ${GE_SRC_DIR}/material/material.cpp

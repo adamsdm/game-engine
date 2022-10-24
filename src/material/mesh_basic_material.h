@@ -23,7 +23,7 @@ class MeshBasicMaterial : public MaterialI {
   ~MeshBasicMaterial();
 
   void prepareForRender(const Camera::CameraI& cam,
-                        const glm::mat4& modelMatrix) override;
+                        const glm::mat4& modelMatrix) const override;
   void addSpecularMap(const std::string& specular_texture_path);
 
  private:

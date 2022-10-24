@@ -7,7 +7,7 @@
 
 namespace GE {
 
-Mesh::Mesh(const Geometry::GeometryI& geometry, Material::MaterialI& material)
+Mesh::Mesh(const Geometry::GeometryI& geometry, const Material::MaterialI& material)
     : m_geometry(geometry),
       m_material(material),
       m_position(0.0f),

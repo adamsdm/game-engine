@@ -29,6 +29,10 @@ void Renderer::render(const Scene& scene, const Camera::CameraI& cam) {
     mesh->render(cam);
   }
 
+  for(auto const& model : scene.getModels()) {
+    model->render(cam);
+  }
+
   glfwSwapBuffers(m_window);
   glfwPollEvents();
 }
