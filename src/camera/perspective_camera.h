@@ -18,7 +18,10 @@ class PerspectiveCamera : public CameraI {
   void setPosition(const glm::vec3& newPos) override;
   glm::mat4 getViewMatrix() const override;
   glm::mat4 getProjectionMatrix() const override;
+
   glm::vec3 getPosition() const override;
+  glm::vec3 getFrontDirection() const override;
+  glm::vec3 getUpDirection() const override;
 
   void setAspectRatio(float aspect);
 

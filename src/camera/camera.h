@@ -13,7 +13,10 @@ class CameraI {
   virtual ~CameraI() = default;
   virtual glm::mat4 getViewMatrix() const = 0;
   virtual glm::mat4 getProjectionMatrix() const = 0;
+
   virtual glm::vec3 getPosition() const = 0;
+  virtual glm::vec3 getFrontDirection() const = 0;
+  virtual glm::vec3 getUpDirection() const = 0;
 
   virtual void setPosition(const glm::vec3& newPosition) = 0;
 };
