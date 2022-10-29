@@ -20,6 +20,8 @@ class PerspectiveCamera : public CameraI {
   glm::mat4 getProjectionMatrix() const override;
   glm::vec3 getPosition() const override;
 
+  void setAspectRatio(float aspect);
+
  private:
   void calculateViewMatrix();
   void calculateProjectionMatrix();

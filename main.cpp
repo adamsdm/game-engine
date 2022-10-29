@@ -11,9 +11,21 @@ int main() {
   GE::Scene scene;
   GE::Renderer renderer(appWindow);
 
+  appWindow.addKeyEventCallback(
+      [&appWindow](int key, int scancode, int action, int mods) {
+        if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+          appWindow.close();
+        }
+      });
+
   float windowRatio{static_cast<float>(appWindow.getWidth()) /
                     static_cast<float>(appWindow.getHeight())};
+
   GE::Camera::PerspectiveCamera camera(75, windowRatio, 0.1, 1000);
+  appWindow.addResizeEventCallback([&camera](int width, int height) {
+    float windowRatio{static_cast<float>(width) / static_cast<float>(height)};
+    camera.setAspectRatio(windowRatio);
+  });
 
   renderer.setClearColor(0.1F, 0.1F, 0.1F, 1.0F);
   renderer.setSize(appWindow.getWidth(), appWindow.getHeight());

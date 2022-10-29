@@ -39,6 +39,11 @@ void PerspectiveCamera::setPosition(const glm::vec3& newPos) {
   calculateViewMatrix();
 }
 
+void PerspectiveCamera::setAspectRatio(float aspect) {
+  m_aspect = aspect;
+  calculateProjectionMatrix();
+}
+
 void PerspectiveCamera::calculateViewMatrix() {
   m_cam_view_matrix = glm::lookAt(m_cam_pos, m_cam_pos + m_cam_front, m_cam_up);
 }
