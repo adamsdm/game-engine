@@ -39,6 +39,12 @@ glm::vec3 PerspectiveCamera::getUpDirection() const {
   return m_cam_up;
 };
 
+void PerspectiveCamera::setFrontDirection(const glm::vec3& dir) {
+  m_cam_front.x = dir.x;
+  m_cam_front.y = dir.y;
+  m_cam_front.z = dir.z;
+};
+
 void PerspectiveCamera::setPosition(const glm::vec3& newPos) {
   m_cam_pos.x = newPos.x;
   m_cam_pos.y = newPos.y;

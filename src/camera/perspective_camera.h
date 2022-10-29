@@ -23,6 +23,7 @@ class PerspectiveCamera : public CameraI {
   glm::vec3 getFrontDirection() const override;
   glm::vec3 getUpDirection() const override;
 
+  void setFrontDirection(const glm::vec3& dir) override;
   void setAspectRatio(float aspect);
 
  private:

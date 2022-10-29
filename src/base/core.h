@@ -11,6 +11,7 @@
 #include "mesh_phong_material.h"
 #include "model.h"
 #include "perspective_camera.h"
+#include "first_person_camera_control.h"
 #include "plane_geometry.h"
 #include "renderer.h"
 #include "scene.h"

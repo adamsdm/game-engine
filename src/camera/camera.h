@@ -18,6 +18,8 @@ class CameraI {
   virtual glm::vec3 getFrontDirection() const = 0;
   virtual glm::vec3 getUpDirection() const = 0;
 
+  virtual void setFrontDirection(const glm::vec3& dir) = 0;
+
   virtual void setPosition(const glm::vec3& newPosition) = 0;
 };
 }  // namespace Camera

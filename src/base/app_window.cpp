@@ -18,6 +18,14 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action,
   }
 }
 
+void mousePosCallback(GLFWwindow* window, double xpos, double ypos) {
+  // Notify the user of this window of the keyEvent
+  auto* appWindow = static_cast<AppWindow*>(glfwGetWindowUserPointer(window));
+  if (appWindow) {
+    appWindow->notifyMousePosSubscribers(xpos, ypos);
+  }
+}
+
 void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
   // TODO What if theres multiple windows?
   glViewport(0, 0, width, height);
@@ -58,8 +66,11 @@ AppWindow::AppWindow(unsigned int width, unsigned int Height)
   // Tell opengl that 'this' is the user of the window instance
   // glfwGetWindowUserPointer can then be used to retrieve 'this'
   glfwSetWindowUserPointer(m_window, this);
+
+  // Setup callbacks
   glfwSetErrorCallback(errorCallback);
   glfwSetKeyCallback(m_window, keyCallback);
+  glfwSetCursorPosCallback(m_window, mousePosCallback);
   glfwSetFramebufferSizeCallback(m_window, framebufferSizeCallback);
 
   glfwMakeContextCurrent(m_window);
@@ -91,6 +102,10 @@ void AppWindow::addKeyEventCallback(const KeyEventCallback& cb) {
   m_keyEventCallbacks.push_back(cb);
 }
 
+void AppWindow::addMousePosEventCallback(const MousePosEventCallback& cb) {
+  m_mouseEventCallbacks.push_back(cb);
+}
+
 void AppWindow::addResizeEventCallback(const ResizeEventCallback& cb) {
   m_resizeEventCallbacks.push_back(cb);
 }
@@ -99,6 +114,12 @@ void AppWindow::notifyKeySubscribers(int key, int scancode, int action,
                                      int mods) {
   for (auto cb : m_keyEventCallbacks) {
     cb(key, scancode, action, mods);
+  }
+}
+
+void AppWindow::notifyMousePosSubscribers(int xpos, int ypos) {
+  for (auto cb : m_mouseEventCallbacks) {
+    cb(xpos, ypos);
   }
 }
 

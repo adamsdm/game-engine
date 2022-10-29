@@ -7,7 +7,7 @@
 
 int main() {
   // TODO Refactor into an app class
-  GE::AppWindow appWindow(800, 600);
+  GE::AppWindow appWindow(1200, 800);
   GE::Scene scene;
   GE::Renderer renderer(appWindow);
 
@@ -26,6 +26,9 @@ int main() {
     float windowRatio{static_cast<float>(width) / static_cast<float>(height)};
     camera.setAspectRatio(windowRatio);
   });
+
+  GE::Camera::Controls::FirstPersonCameraControl cameraControl(camera,
+                                                               appWindow);
 
   renderer.setClearColor(0.1F, 0.1F, 0.1F, 1.0F);
   renderer.setSize(appWindow.getWidth(), appWindow.getHeight());
@@ -49,7 +52,9 @@ int main() {
 
   // Main loop
   while (!appWindow.shouldClose()) {
+    float deltaTime = glfwGetTime() - time;
     time = glfwGetTime();
+    cameraControl.update(deltaTime);
     containerBox->setRotation(rotationSpeed * time * 3.14, 0.0F, 1.0F, 0.0F);
     model->setRotation(rotationSpeed * time * 3.14, 0.0, 1.0, 0.0);
     renderer.render(scene, camera);

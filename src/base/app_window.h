@@ -14,6 +14,7 @@ class KeyEventSubscriberI;
 }
 
 using KeyEventCallback = std::function<void(int, int, int, int)>;
+using MousePosEventCallback = std::function<void(int, int)>;
 using ResizeEventCallback = std::function<void(int, int)>;
 
 class AppWindow {
@@ -29,9 +30,11 @@ class AppWindow {
   void close() const;
 
   void addKeyEventCallback(const KeyEventCallback& cb);
+  void addMousePosEventCallback(const MousePosEventCallback& cb);
   void addResizeEventCallback(const ResizeEventCallback& cb);
 
   void notifyKeySubscribers(int key, int scancode, int action, int mods);
+  void notifyMousePosSubscribers(int xpos, int ypos);
   void notifyWindowResizeSubscribers(int width, int height);
 
  private:
@@ -40,6 +43,7 @@ class AppWindow {
   unsigned int m_height;
 
   std::vector<KeyEventCallback> m_keyEventCallbacks;
+  std::vector<MousePosEventCallback> m_mouseEventCallbacks;
   std::vector<ResizeEventCallback> m_resizeEventCallbacks;
 };
 
